@@ -1,0 +1,81 @@
+.gallaryPost {
+  display: flex;
+  justify-content: space-between;
+}
+.sideImageWrapper div {
+  width: 100%;
+  height: 450px;
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+}
+.BLOG {
+  text-decoration: none;
+  display: block;
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: 400;
+  text-align: center;
+  color: #565673;
+  padding: 0 20px;
+}
+.search form {
+  display: flex;
+  margin: 0 180px;
+}
+.searchInput {
+  border: 0;
+  width: 0;
+  transition: width 0.1s ease-in;
+}
+
+.searchInput.active {
+  width: 150px;
+}
+
+.searchInput:focus {
+  outline: none;
+}
+
+.searchIcon {
+  cursor: pointer;
+}
+
+@media (min-width: 1280px) {
+  .MuiContainer-maxWidthLg {
+    max-width: 1280px;
+  }
+}
+@media (min-width: 600px) {
+  .MuiContainer-root {
+    padding-left: 24px;
+    padding-right: 24px;
+  }
+}
+.MuiContainer-root {
+  width: 100%;
+  display: block;
+  box-sizing: border-box;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+
+@media (max-width: 1200px) {
+  /* .contactc {
+    padding: 50px;
+  } */
+  .sidebarContainer {
+    flex-direction: column;
+  }
+  /* .containerc .contactinfo {
+    margin-bottom: 40px;
+  }
+  .containerc .contactinfo,
+  .contactform {
+    width: 100%; */
+}

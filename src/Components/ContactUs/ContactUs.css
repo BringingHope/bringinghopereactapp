@@ -1,0 +1,242 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+.mainpicab {
+  width: 100%;
+  height: 600px;
+  padding-bottom: -23rem;
+}
+
+.contactc {
+  position: relative;
+  min-height: 100vh;
+  padding: 50px 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: url("https://cdn.pixabay.com/photo/2017/06/06/23/51/sticky-notes-2378911__340.jpg");
+  background-size: cover;
+}
+
+.contactcontentc {
+  max-width: 800px;
+  text-align: center;
+  /* background-color: black; */
+
+  padding-top: 20px;
+  border-radius: 6px;
+  /* box-shadow: 0px 20px green; */
+}
+
+.contactcontentc h2 {
+  font-weight: 500;
+  color: #fff;
+}
+.contactcontentc h2:hover {
+  color: #fff;
+
+  transform: translateY(-20px);
+}
+.contactcontentc p {
+  font-weight: 300;
+  color: #fff;
+}
+
+.containerc {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  /* background-color: white; */
+  border-radius: 20px;
+}
+
+.containerc .contactinfo {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  /* background-color: white; */
+  padding-left: 40px;
+}
+
+.containerc .contactinfo .box-c {
+  position: relative;
+  padding: 20px 0;
+  display: flex;
+}
+.containerc .contactinfo .boxc .iconc {
+  min-width: 50px;
+  margin-top: 20px;
+  height: 50px;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  font-style: 12;
+  border-radius: 100%;
+}
+
+.containerc .contactinfo .boxc .iconc:hover {
+  transform: translateY(-20px);
+}
+.containerc .contactinfo .boxc .textc {
+  display: flex;
+  justify-content: baseline;
+  margin-left: 0px;
+  font-size: 12px;
+  color: #fff;
+  flex-direction: column;
+  font-weight: 300;
+}
+.containerc .contactinfo .boxc .textc h3 {
+  margin-top: 10px;
+  font-weight: 500;
+  color: #fff;
+}
+.contactform {
+  width: 40%;
+  padding: 40px;
+  /* background: white; */
+  border-radius: 10px;
+  box-shadow: 0 20px 30px #77c720;
+}
+
+/* .contactform:hover {
+  width: 40%;
+  padding: 40px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 20px 30px #77c720;
+  transform: translateY(-20px);
+  transition: 0.5s;
+} */
+.contactform h2 {
+  font-size: 30px;
+  color: #fff;
+  font-weight: 500;
+}
+
+.contactform .inputbox {
+  position: relative;
+  width: 100%;
+  height: 13px;
+  margin-top: 10px;
+}
+.contactform .inputbox input,
+.contactform .inputbox textarea {
+  width: 100%;
+  padding: 2px 0;
+  font-size: 16px;
+  margin: 5px 0;
+  border: none;
+  border-bottom: 2px solid red;
+  outline: none;
+  resize: none;
+}
+.contactform .inputbox span {
+  position: absolute;
+  left: 0;
+  padding: 5px 0;
+  font-size: 16px;
+  margin: 10px 0;
+  pointer-events: none;
+  transition: 0.5s;
+  color: black;
+}
+.contactform .inputbox input:focus ~ span,
+.contactform .inputbox input:valid ~ span,
+.contactform .textarea input:focus ~ span,
+.contactform .textarea input:valid ~ span {
+  color: #e91e63;
+  font-size: 12px;
+  transform: translateY(-20px);
+}
+
+.contactform .inputbox {
+  width: 100px;
+  border: none;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 18px;
+}
+.contactform .inputbox:hover {
+  width: 100px;
+  border: none;
+  color: black;
+  cursor: pointer;
+  padding: 10px;
+  font-size: 18px;
+}
+
+@media (max-width: 991px) {
+  .contactc {
+    padding: 50px;
+  }
+  .containerc {
+    flex-direction: column;
+  }
+  .containerc .contactinfo {
+    margin-bottom: 40px;
+  }
+  .containerc .contactinfo,
+  .contactform {
+    width: 100%;
+  }
+}
+
+.btnc {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 8px 20px;
+  background: orange;
+  margin-top: 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 400;
+  color: white;
+}
+
+.btnc:hover {
+  width: 200px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  height: 55px;
+  text-align: center;
+  border: none;
+  background-size: 300% 100%;
+
+  border-radius: 50px;
+
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+
+  background-image: linear-gradient(
+    to right,
+    #f5ce62,
+    #40b353,
+    #46cf2b,
+    #77c720
+  );
+  box-shadow: 0 4px 15px 0 rgba(229, 66, 10, 0.75);
+}
+
+.sliderab {
+  background-color: black;
+  padding: 20px;
+}
+.mission {
+  text-align: center;
+  color: #fff;
+}

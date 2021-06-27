@@ -1,0 +1,264 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: "Balsamiq Sans", cursive;
+}
+.logo {
+  color: #fff;
+}
+.navbar-custom {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  background-color: rgba(7, 7, 7, 0.582);
+}
+
+.containerh {
+  margin-top: 630px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.containerh .cardh {
+  position: relative;
+  min-width: 300px;
+  height: 200px;
+}
+.containerh .cardh .boxh {
+  position: absolute;
+  border: 3px solid black;
+
+  border-radius: 13px;
+  box-shadow: 0 50px 50px rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
+}
+
+.containerh .cardh .boxh .contenth {
+  text-align: center;
+  text-align: justify;
+}
+
+.btnh {
+  padding-bottom: 20px;
+}
+.btnh:hover {
+  padding-bottom: 20px;
+  transform: translateY(20px);
+  color: #77c720;
+}
+.button {
+  position: relative;
+  display: inline-block;
+  padding: 8px 20px;
+  background: #77c720;
+  margin-top: 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 400;
+  color: white;
+}
+
+.button:hover {
+  width: 200px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  height: 55px;
+  text-align: center;
+  border: none;
+  background-size: 300% 100%;
+
+  border-radius: 50px;
+
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+
+  background-image: linear-gradient(
+    to right,
+    #f5ce62,
+    #e43603,
+    #fa7199,
+    #e85a19
+  );
+  box-shadow: 0 4px 15px 0 rgba(229, 66, 10, 0.75);
+}
+
+/*Major Causes Section*/
+.page-section h2.section-heading {
+  padding: 1rem;
+  font-size: 2.5rem;
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+.page-section h3.section-subheading {
+  font-size: 1rem;
+  font-weight: 400;
+  font-style: italic;
+  margin-bottom: 4rem;
+}
+/*End of Major Causes Section */
+
+/* About section*/
+
+.about {
+  padding: 10px 0 0 0;
+}
+
+.about p {
+  font-size: 1.5rem;
+
+  color: #080808;
+  margin-bottom: 15px;
+}
+
+.img-fluid {
+  height: 30rem;
+  width: 25rem;
+
+  margin-bottom: 2rem;
+  box-sizing: border-box;
+  position: relative;
+  background: white;
+  display: flex;
+  align-items: flex-end;
+  transition: 0.6s ease-out;
+  box-shadow: 0 20px 20px black;
+}
+
+.img-fluid:hover {
+  transform: translateY(15px);
+}
+.img-fluid:hover::before {
+  opacity: 1;
+}
+
+/* end of About Section*/
+
+.container1 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.container1 .card1 {
+  position: relative;
+  min-width: 320px;
+  height: 440px;
+  border: 2px solid rgb(175, 171, 171);
+  box-shadow: inset 5px 5px 5px rgb(34, 33, 32),
+    inset -5px -5px 15px rgb(77, 71, 61) rgb(37, 59, 37),
+    -5px -5px 15px rgb(65, 63, 59);
+  border-radius: 13px;
+  margin-top: 0;
+  margin: 30px;
+}
+.container1 .card1 .box1 {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  background: white;
+  border: 2px solid #77c720;
+  border-radius: 13px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
+}
+
+.container1 .card1 .box1:hover {
+  transform: translateY(-50px);
+  box-shadow: 0 40px 70px #77c720;
+}
+.container1 .card1 .box1 .content1 {
+  padding: 40px;
+  /* text-align: center; */
+  text-align: justify;
+}
+
+.container1 .card1 .box1 .content1 .cards1 {
+  font-size: 16px;
+  font-weight: 300;
+  color: black;
+}
+
+.container1 .card1 .box1 .content1 .btn1 {
+  position: relative;
+  display: inline-block;
+  padding: 8px 20px;
+  background: #000;
+  margin-top: 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 400;
+  color: white;
+}
+.container1 .card1 .box1 .content1 .btn1:hover {
+  box-shadow: 0 40px 70px rgba(0, 0, 0, 0.5);
+}
+
+.container1 .card1:nth-child(1) .box1 .content1 .btn1 {
+  background: orange;
+}
+.container1 .card1:nth-child(1) .box1 .content1 .btn1:hover {
+  background: green;
+}
+.container1 .card1:nth-child(2) .box1 .content1 .btn1 {
+  background: orange;
+}
+.container1 .card1:nth-child(2) .box1 .content1 .btn1:hover {
+  background: red;
+}
+.container1 .card1:nth-child(3) .box1 .content1 .btn1 {
+  background: orange;
+}
+.container1 .card1:nth-child(3) .box1 .content1 .btn1:hover {
+  background: crimson;
+}
+
+.button {
+  position: relative;
+  display: inline-block;
+  padding: 8px 20px;
+  background: #77c720;
+  margin-top: 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 400;
+  color: white;
+}
+
+.button:hover {
+  width: 200px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  margin: 20px;
+  height: 55px;
+  text-align: center;
+  border: none;
+  background-size: 300% 100%;
+
+  border-radius: 50px;
+
+  -o-transition: all 0.4s ease-in-out;
+  -webkit-transition: all 0.4s ease-in-out;
+  transition: all 0.4s ease-in-out;
+
+  background-image: linear-gradient(
+    to right,
+    #f5ce62,
+    #e43603,
+    #fa7199,
+    #e85a19
+  );
+  box-shadow: 0 4px 15px 0 rgba(229, 66, 10, 0.75);
+}

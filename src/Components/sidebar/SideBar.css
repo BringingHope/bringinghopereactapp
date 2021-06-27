@@ -1,0 +1,80 @@
+.sidebar {
+  flex: 3;
+  height: fit-content;
+  margin: 20px;
+
+  padding-bottom: 30px;
+  background-color: #fdfbfb;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sidebarItem {
+  display: flex;
+
+  flex-direction: column;
+  align-items: inherit;
+}
+
+.sidebarTitle {
+  margin: 10px;
+  padding: 5px;
+  width: 70%;
+  border-top: solid 1px #a7a4a4;
+  border-bottom: solid 1px #a7a4a4;
+  text-align: center;
+  font-family: "Varela Round", sans-serif;
+  font-size: 12px;
+  line-height: 19px;
+  color: black;
+  text-align: center;
+  font-weight: 600;
+}
+
+.sidebarItem > p {
+  padding: 30px;
+}
+
+.sidebarList {
+  list-style-type: none;
+  margin-bottom: 30px;
+}
+.linkside {
+  color: #77c720;
+  text-decoration: none;
+}
+
+.sidebarListItem {
+  display: inline-block;
+  width: 50%;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.sidebarSocial {
+  margin-top: 15px;
+  width: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.profileImageContainer1 {
+  width: 20px;
+  height: 20px;
+}
+.sidebarContainer {
+  width: 345.6px;
+  height: 292.14px;
+}
+.recentpostlink {
+  font-size: 0.9rem;
+}
+.recentPost h3 {
+  font-size: 12px;
+}
+.recentPost span {
+  font-size: 12px;
+}
