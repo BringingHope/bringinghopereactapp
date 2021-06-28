@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./SideBar.css";
 import Cards from "../Cards/Cards";
-import blogPost from "../../data/blog.json";
+import blogPost from "../../../data/blog.json";
 import { NavLink } from "react-router-dom";
 // import { Card } from "reactstrap";
 

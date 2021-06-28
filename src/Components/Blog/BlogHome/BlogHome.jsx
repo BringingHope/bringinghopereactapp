@@ -1,10 +1,11 @@
 import React from "react";
 import "./BlogHome.css";
 import Header from "../Header/Header";
+
 import Cards from "../Cards/Cards";
-import blogData from "../../data/blog.json";
+import blogData from "../../../data/blog.json";
 import Layout from "../Layout/Layout";
-import RecentPost from "../Blog/RecentPost/RecentPost";
+import RecentPost from "../RecentPost/RecentPost";
 
 const SideImage = (props) => {
   return (

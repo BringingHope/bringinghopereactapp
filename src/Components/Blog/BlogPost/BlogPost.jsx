@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./BlogPost.css";
 import Cards from "../Cards/Cards";
-import blogPost from "../../data/blog.json";
+import blogPost from "../../../data/blog.json";
 import { post } from "jquery";
 
 /**
@@ -43,7 +43,7 @@ const BlogPost = (props) => {
           </div>
 
           <div className="postImageContainer">
-            <img src={post.blogImage} alt="" />
+            <img src={post.blogImage} alt="Post Image" />
           </div>
 
           <div className="postContent">

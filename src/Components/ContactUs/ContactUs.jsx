@@ -1,7 +1,7 @@
 import { Icon } from "@material-ui/core";
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
-import ImageSlider from "../Slider/ImageSlider";
+import ImageSlider from "../AboutUs/Slider/ImageSlider";
 import {
   Button,
   Form,
