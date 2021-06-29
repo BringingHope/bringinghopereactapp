@@ -23,6 +23,28 @@ export default class AboutUs extends Component {
               src="./img/old-1701626_1920.jpg"
               alt="Second slide"
             />
+import ImageSlider from "./Slider/ImageSlider";
+import React, { Component } from "react";
+
+export default class AboutUs extends Component {
+  render() {
+    return (
+      <>
+        <Carousel>
+          <Carousel.Item>
+            <img
+              className="Corlog"
+              src="./img/children-2704878_1920.jpg"
+              alt="First slide"
+            />
+            <Carousel.Caption></Carousel.Caption>
+          </Carousel.Item>
+          <Carousel.Item>
+            <img
+              className="Corlog"
+              src="./img/old-1701626_1920.jpg"
+              alt="Second slide"
+            />
 
             <Carousel.Caption></Carousel.Caption>
           </Carousel.Item>

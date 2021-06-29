@@ -1,4 +1,5 @@
 import "./Home.css";
+import React, { Component } from "react";
 import {
   Card,
   Button,
@@ -10,6 +11,19 @@ import {
 } from "reactstrap";
 import React, { Component } from "react";
 
+export default class Home extends Component {
+  render() {
+    return (
+      <>
+        <video
+          autoPlay
+          loop
+          muted
+          style={{
+            position: "absolute",
+            width: "100%",
+            height: "700px",
+            objectFit: "cover",
 export default class Home extends Component {
   render() {
     return (
