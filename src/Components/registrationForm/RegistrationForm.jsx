@@ -12,7 +12,7 @@ export default class RegistrationForm extends Component {
         let OrgRegistrationDetails ={
             firstName: values.firstName,
             organisationName: values.organisationName,
-            email: values.email,
+            username: values.username,
             phoneNumber: values.phoneNumber,
             password: values.password
         }
@@ -32,7 +32,7 @@ export default class RegistrationForm extends Component {
         const INITIAL_FORM_STATE = {
             firstName: '',
             organisationName: '',
-            email: '',
+            username: '',
             phoneNumber: '',
             password: '',
             confirmPassword: ''
@@ -45,7 +45,7 @@ export default class RegistrationForm extends Component {
                 .required('Organisation Name is required'),
             phoneNumber: Yup.string()
                 .required('Phone Number is required'),
-            email: Yup.string()
+                username: Yup.string()
                 .email('Email is invalid')
                 .required('Email is required'),
             password: Yup.string()
@@ -75,7 +75,7 @@ export default class RegistrationForm extends Component {
                                         <FormikControl control='input' label="First Name" name="firstName" type="text" />
                                         <FormikControl control='input' label="Organisation Name" name="organisationName" type="text" />
                                         <FormikControl control='input' label="Phone Number" name="phoneNumber" type="number" />           
-                                        <FormikControl control='input' label="Email" name="email" type="email" />
+                                        <FormikControl control='input' label="Email" name="username" type="email" />
                                         <FormikControl control='input' label="Password" name="password" type="password" />
                                         <FormikControl control='input' label="Confirm Password" name="confirmPassword" type="password" />
                                         <button className="btn btn-success m-1" type="submit">Register</button>
