@@ -4,18 +4,14 @@ import {
   Menu,
   MenuItem,
   SidebarHeader,
-  SidebarFooter,
   SidebarContent,
 } from "react-pro-sidebar";
-import { NavLink, withRouter } from "react-router-dom";
-import { FaList, FaRegHeart } from "react-icons/fa";
-import {
-  FiLogOut,
-  FiArrowLeftCircle,
-  FiArrowRightCircle,
-} from "react-icons/fi";
+import { NavLink } from "react-router-dom";
 
-import { FaUserAlt } from "react-icons/fa";
+import { RiMoneyDollarBoxFill } from "react-icons/ri";
+import { FaUserAlt, FaHandsHelping } from "react-icons/fa";
+import { BiMenu, BiLogOut } from "react-icons/bi";
+import { GrShieldSecurity } from "react-icons/gr";
 import { MdEvent } from "react-icons/md";
 import "react-pro-sidebar/dist/css/styles.css";
 import "./DashBoard1.css";
@@ -30,14 +26,13 @@ const DashBoard1 = () => {
   return (
     <>
       <div id="header">
-        {/* collapsed props to change menu size using menucollapse state */}
         <ProSidebar collapsed={menuCollapse}>
           <SidebarHeader>
             <div className="logotext">
               <p>{menuCollapse ? "Logo" : "Big Logo"}</p>
             </div>
             <div className="closemenu" onClick={menuIconClick}>
-              {menuCollapse ? <FiArrowRightCircle /> : <FiArrowLeftCircle />}
+              {menuCollapse ? <BiMenu /> : <BiMenu />}
             </div>
           </SidebarHeader>
           <SidebarContent>
@@ -48,26 +43,26 @@ const DashBoard1 = () => {
                 </NavLink>
               </MenuItem>
               <MenuItem active={true} icon={<MdEvent />}>
-                <NavLink className="menulink" to="/dash/profile" exact>
+                <NavLink className="menulink" to="/dash/events" exact>
                   Events
                 </NavLink>
               </MenuItem>
-              <MenuItem active={true} icon={<FaUserAlt />}>
+              <MenuItem active={true} icon={<RiMoneyDollarBoxFill />}>
                 <NavLink className="menulink" to="/dash/profile" exact>
                   Donar List
                 </NavLink>
               </MenuItem>
-              <MenuItem active={true} icon={<FaUserAlt />}>
+              <MenuItem active={true} icon={<FaHandsHelping />}>
                 <NavLink className="menulink" to="/dash/profile" exact>
                   Volunteer List
                 </NavLink>
               </MenuItem>
-              <MenuItem active={true} icon={<FaUserAlt />}>
+              <MenuItem active={true} icon={<GrShieldSecurity />}>
                 <NavLink className="menulink" to="/dash/profile" exact>
                   Security
                 </NavLink>
               </MenuItem>
-              <MenuItem active={true} icon={<FaUserAlt />}>
+              <MenuItem active={true} icon={<BiLogOut />}>
                 <NavLink className="menulink" to="/dash/profile" exact>
                   Logout
                 </NavLink>

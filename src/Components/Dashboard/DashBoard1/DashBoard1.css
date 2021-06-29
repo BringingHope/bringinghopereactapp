@@ -10,7 +10,7 @@
   height: 100vh;
 }
 #header .closemenu {
-  color: #000;
+  color: white;
   position: absolute;
   right: 0;
   z-index: 9999;
@@ -30,7 +30,7 @@
   min-width: 80px;
 }
 #header .pro-sidebar-inner {
-  background-color: white;
+  background-color: black;
   box-shadow: 0.5px 0.866px 2px 0px rgba(0, 0, 0, 0.15);
 }
 #header .pro-sidebar-inner .pro-sidebar-layout {

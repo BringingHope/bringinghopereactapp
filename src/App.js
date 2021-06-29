@@ -6,7 +6,7 @@ import { Navigation, Footer, Home, AboutUs, Contact, List, Blog, Login, BlogHome
 import Post1 from "./Components/Blog/Post/Post1";
 import Profile from "./Components/Dashboard/Profile/Profile";
 import DashBoard1 from "./Components/Dashboard/DashBoard1/DashBoard1"
-
+import Events from "./Components/Dashboard/Events/Events"
 function App() {
   return (
     <div className="App">
@@ -22,6 +22,7 @@ function App() {
           <Route path="/post/:postId" component={Post1} />
           <Route path="/dash" exact component={() => <DashBoard1 />} />
           <Route path="/dash/profile" exact component={() => <Profile />} />
+          <Route path="/dash/events" exact component={() => <Events />} />
 
 
 
