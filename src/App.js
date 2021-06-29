@@ -8,6 +8,7 @@ import Post1 from "./Components/Blog/Post/Post1";
 import Profile from "./Components/Dashboard/Profile/Profile";
 import DashBoard1 from "./Components/Dashboard/DashBoard1/DashBoard1"
 import DashBoard from "./Components/Dashboard/DashBoard";
+import Events from "./Components/Dashboard/Events/Events";
 
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
           <Route path="/login" exact component={() => <Login />} />
           < Route path="/dash" exact component={() => <DashBoard1 />} />
           <Route path="/dash/profile" exact component={() => <Profile />} />
+          <Route path="/dash/events" exact component={() => <Events />} />
 
 
         </Switch>
