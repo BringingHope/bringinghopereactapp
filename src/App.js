@@ -1,21 +1,21 @@
 
 import React from "react";
-
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import { Navigation, Footer, Home, AboutUs, Contact, List, Blog, Login, BlogHome } from "./Components";
 import Post1 from "./Components/Blog/Post/Post1";
-<<<<<<< HEAD
-
 import Profile from "./Components/Dashboard/Profile/Profile";
 import DashBoard1 from "./Components/Dashboard/DashBoard1/DashBoard1"
 import DashBoard from "./Components/Dashboard/DashBoard";
-
-
-=======
+import "./App.css";
+import RegistrationForm from "./Components/registrationForm/RegistrationForm";
+import DonorForm from "./Components/donorForm/DonorForm";
+import VolunteerForm from "./Components/volunteerForm/VolunteerForm";
+import LoginForm from "./Components/loginForm/LoginForm";
+import PhoneOtpVerification from "./Components/phoneNumberVerification/PhoneOtpVerification";
 import Profile from "./Components/Dashboard/Profile/Profile";
 import DashBoard1 from "./Components/Dashboard/DashBoard1/DashBoard1"
 import Events from "./Components/Dashboard/Events/Events"
->>>>>>> e1a82f7 (commit)
+
 function App() {
   return (<>
 
@@ -30,18 +30,17 @@ function App() {
           <Route path="/blog" exact component={() => <BlogHome />} />
           <Route path="/blog/bloghome" exact component={() => <Blog />} />
           <Route path="/post/:postId" component={Post1} />
-<<<<<<< HEAD
-=======
-          <Route path="/dash" exact component={() => <DashBoard1 />} />
+          Route path="/dash" exact component={() => <DashBoard1 />} />
           <Route path="/dash/profile" exact component={() => <Profile />} />
           <Route path="/dash/events" exact component={() => <Events />} />
-
-
-
->>>>>>> e1a82f7 (commit)
           <Route path="/login" exact component={() => <Login />} />
           < Route path="/dash" exact component={() => <DashBoard1 />} />
           <Route path="/dash/profile" exact component={() => <Profile />} />
+          <Route path="/registration" exact component={() => <RegistrationForm />} />
+          <Route path="/donorForm" exact component={() => <DonorForm />} />
+          <Route path="/volunteerForm" exact component={() => <VolunteerForm />} />
+          <Route path="/Login" exact component={() => <LoginForm />} />
+          <Route path="/OtpVerification" exact component={() => <PhoneOtpVerification />} />
 
 
         </Switch>
