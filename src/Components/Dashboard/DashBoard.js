@@ -1,7 +1,6 @@
 import React from 'react'
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import DashBoard1 from './DashBoard1/DashBoard1';
-import Profile from './Profile/Profile';
+import { BrowserRouter as Router,  Switch } from "react-router-dom";
+
 function DashBoard() {
     return (
         <Router>
