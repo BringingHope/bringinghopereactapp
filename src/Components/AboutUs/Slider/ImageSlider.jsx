@@ -38,7 +38,6 @@ export default class ImageSlider extends Component {
               <img
                 className="slidim"
                 src="https://cdn.pixabay.com/photo/2017/05/28/18/59/group-2351896__340.png"
-                alt=""
               />
 
               <div className="details">
@@ -54,7 +53,6 @@ export default class ImageSlider extends Component {
               <img
                 className="slidim"
                 src="https://cdn.pixabay.com/photo/2017/09/16/01/41/poor-2754335__340.jpg"
-                alt=""
               />
 
               <div className="details">
@@ -70,7 +68,6 @@ export default class ImageSlider extends Component {
               <img
                 className="slidim"
                 src="https://cdn.pixabay.com/photo/2017/07/06/14/44/help-2478193__340.jpg"
-                alt=""
               />
 
               <div className="details">

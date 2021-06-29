@@ -8,10 +8,34 @@ export default class Profile extends Component {
       <>
         <DashBoard1 />
         <Container className="Profilepage">
-          hello profile Lorem ipsum dolor sit amet consectetur adipisicing elit.
+          hello Proflie Lorem ipsum dolor sit amet consectetur adipisicing elit.
           Obcaecati odit incidunt magnam reiciendis. Rerum officia, officiis,
           proiure debitis veritatis dignissimos tenetur vitae nemo perspiciatis!
-          vident itaque facilis sunt omnis possimus
+          vident itaque facilis sunt omnis possimus hello Sidebar Lorem ipsum
+          dolor sit amet consectetur adipisicing elit. Obcaecati odit incidunt
+          magnam reiciendis. Rerum officia, officiis, proiure debitis veritatis
+          dignissimos tenetur vitae nemo perspiciatis! vident itaque facilis
+          sunt omnis possimus hello Sidebar Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Obcaecati odit incidunt magnam
+          reiciendis. Rerum officia, officiis, proiure debitis veritatis
+          dignissimos tenetur vitae nemo perspiciatis! vident itaque facilis
+          sunt omnis possimus hello Sidebar Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Obcaecati odit incidunt magnam
+          reiciendis. Rerum officia, officiis, proiure debitis veritatis
+          dignissimos tenetur vitae nemo perspiciatis! vident itaque facilis
+          sunt omnis possimus hello Sidebar Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Obcaecati odit incidunt magnam
+          reiciendis. Rerum officia, officiis, proiure debitis veritatis
+          dignissimos tenetur vitae nemo perspiciatis! vident itaque facilis
+          sunt omnis possimus hello Sidebar Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Obcaecati odit incidunt magnam
+          reiciendis. Rerum officia, officiis, proiure debitis veritatis
+          dignissimos tenetur vitae nemo perspiciatis! vident itaque facilis
+          sunt omnis possimus hello Sidebar Lorem ipsum dolor sit amet
+          consectetur adipisicing elit. Obcaecati odit incidunt magnam
+          reiciendis. Rerum officia, officiis, proiure debitis veritatis
+          dignissimos tenetur vitae nemo perspiciatis! vident itaque facilis
+          sunt omnis possimus
         </Container>
       </>
     );

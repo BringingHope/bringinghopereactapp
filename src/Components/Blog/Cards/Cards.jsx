@@ -1,6 +1,3 @@
-import React, { Component } from "react";
-import "./Cards.css";
-
 import "./Cards.css";
 
 import React, { Component } from "react";
