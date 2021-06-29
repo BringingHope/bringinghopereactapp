@@ -1,6 +1,6 @@
 import React from "react";
 import "./RecentPost.css";
-import Cards from "../../Cards/Cards";
+import Cards from "../Cards/Cards";
 
 /**
  * @author
