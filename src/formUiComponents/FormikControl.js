@@ -4,9 +4,9 @@ import Textarea from './Textarea'
 import Select from './Select'
 import RadioButtons from './RadioButtons'
 import CheckboxGroup from './CheckboxGroup'
+import "./FormUi.css"
 
-
-function FormikControl (props) {
+function FormikControl(props) {
   const { control, ...rest } = props
   switch (control) {
     case 'input':

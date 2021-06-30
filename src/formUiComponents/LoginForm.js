@@ -2,8 +2,8 @@ import React from 'react'
 import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import FormikControl from './FormikControl'
-
-function LoginForm () {
+import "./FormUi.css"
+function LoginForm() {
   const initialValues = {
     email: '',
     password: ''

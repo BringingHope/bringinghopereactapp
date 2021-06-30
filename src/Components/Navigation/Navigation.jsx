@@ -101,7 +101,7 @@ function Navigation(props) {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="/login" exact>
+              <NavLink className="nav-link" to="/Login" exact>
                 <i className="far fa-copy"></i>Login
               </NavLink>
             </li>

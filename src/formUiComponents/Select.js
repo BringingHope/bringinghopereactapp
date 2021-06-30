@@ -1,8 +1,8 @@
 import React from 'react'
 import { Field, ErrorMessage } from 'formik'
 import TextError from './TextError'
-
-function Select (props) {
+import "./FormUi.css"
+function Select(props) {
   const { label, name, options, ...rest } = props
   return (
     <div className='form-control'>

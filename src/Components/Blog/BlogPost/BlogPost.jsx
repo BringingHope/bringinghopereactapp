@@ -43,7 +43,7 @@ const BlogPost = (props) => {
           </div>
 
           <div className="postImageContainer">
-            <img src={post.blogImage} alt="Post Image" />
+            <img src={post.blogImage} alt="" />
           </div>
 
           <div className="postContent">

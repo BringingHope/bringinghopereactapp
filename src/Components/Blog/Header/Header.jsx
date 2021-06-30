@@ -38,7 +38,12 @@ const Header = (props) => {
         </ul>
         <div className="search">
           <form onSubmit={submitSearch}>
-            <input type="text" className={searchClass} placeholder="Search" />
+            <input
+              className="sinput"
+              type="textname"
+              className={searchClass}
+              placeholder="Search"
+            />
 
             <Icon
               onClick={openSearch}

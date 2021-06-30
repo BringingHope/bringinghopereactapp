@@ -49,7 +49,7 @@ const DashBoard1 = () => {
               </MenuItem>
               <MenuItem active={true} icon={<RiMoneyDollarBoxFill />}>
                 <NavLink className="menulink" to="/dash/profile" exact>
-                  Donar List
+                  Donor List
                 </NavLink>
               </MenuItem>
               <MenuItem active={true} icon={<FaHandsHelping />}>

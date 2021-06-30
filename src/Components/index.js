@@ -5,5 +5,4 @@ export { default as AboutUs } from "./AboutUs/AboutUs";
 export { default as Contact } from "./ContactUs/ContactUs";
 export { default as List } from "./List/List";
 export { default as Blog } from "./Blog/Blog";
-export { default as Login } from "./Login/Login";
 export { default as BlogHome } from "./Blog/BlogHome/BlogHome";

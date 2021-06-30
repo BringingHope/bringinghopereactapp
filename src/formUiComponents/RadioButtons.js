@@ -1,8 +1,8 @@
 import React from 'react'
 import { Field, ErrorMessage } from 'formik'
 import TextError from './TextError'
-
-function RadioButtons (props) {
+import "./FormUi.css"
+function RadioButtons(props) {
   const { label, name, options, ...rest } = props
   return (
     <div className='form-control'>

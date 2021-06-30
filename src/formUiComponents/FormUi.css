@@ -1,0 +1,70 @@
+label {
+  font-weight: bold;
+  display: flex;
+  margin-bottom: 5px;
+  font-size: 20px;
+}
+
+input {
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+textarea,
+select {
+  display: block;
+  width: 400px;
+  padding: 12px 12px;
+  font-size: 14px;
+  line-height: 1;
+
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.form-control {
+  margin-bottom: 90px;
+  width: 300px;
+}
+.form-control:disabled,
+.form-control:read-only {
+  background-color: none;
+  opacity: 1;
+  border: none;
+}
+
+.error {
+  color: red;
+  font-size: 15px;
+}
+
+.regheading {
+  text-align: center;
+}
+
+.regform {
+  border-radius: 10px;
+  margin-bottom: 40px;
+  box-shadow: 0 20px 30px #77c720;
+}
+
+.regbtn {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 8px 20px;
+  background: orange;
+  margin-top: 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 400;
+  color: white;
+}
+.regbtn:hover {
+  background-color: #77c720;
+}

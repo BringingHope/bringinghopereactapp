@@ -1,8 +1,8 @@
 
 import React from "react";
-import "./App.css";
+
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
-import { Navigation, Footer, Home, AboutUs, Contact, List, Blog, Login, BlogHome } from "./Components";
+import { Navigation, Footer, Home, AboutUs, Contact, List, Blog, BlogHome } from "./Components";
 import Post1 from "./Components/Blog/Post/Post1";
 import RegistrationForm from "./Components/registrationForm/RegistrationForm";
 import DonorForm from "./Components/donorForm/DonorForm";
@@ -30,7 +30,7 @@ function App() {
           <Route path="/dash" exact component={() => <DashBoard1 />} />
           <Route path="/dash/profile" exact component={() => <Profile />} />
           <Route path="/dash/events" exact component={() => <Events />} />
-          <Route path="/login" exact component={() => <Login />} />
+          {/* <Route path="/login" exact component={() => <Login />} /> */}
           <Route path="/dash" exact component={() => <DashBoard1 />} />
           <Route path="/dash/profile" exact component={() => <Profile />} />
           <Route path="/registration" exact component={() => <RegistrationForm />} />
