@@ -1,22 +1,26 @@
-import React, { Component } from "react";
-import { Formik, Form } from "formik";
-import * as Yup from "yup";
-import FormikControl from "../../formUiComponents/FormikControl";
-import { Card } from "reactstrap";
+import React, { Component } from 'react';
+import { Formik, Form } from 'formik'
+import * as Yup from 'yup'
+import FormikControl from '../../formUiComponents/FormikControl';
+
+
 
 export default class LoginForm extends Component {
-  render() {
-    const INITIAL_FORM_STATE = {
-      email: "",
-      password: "",
-    };
+    render() {
+        const INITIAL_FORM_STATE = {
+            username: '',
+            password: ''
+        };
 
-    const FORM_VALIDATION = Yup.object().shape({
-      email: Yup.string().email("Email is invalid").required("Required"),
-      password: Yup.string()
-        .min(8, "Password must be at least 8 characters")
-        .required("Required"),
-    });
+        const FORM_VALIDATION = Yup.object().shape({
+            username: Yup.string()
+                .email('Email is invalid')
+                .required('Required'),
+            password: Yup.string()
+                .min(8, 'Password must be at least 8 characters')
+                .required('Required')
+        });
+
 
     const onSubmit = (values) => {
       console.log("Form data", values);
@@ -46,7 +50,7 @@ export default class LoginForm extends Component {
                       control="input"
                       type="password"
                       label="Password"
-                      name="password"
+                      name="username"
                     />
                     <button
                       className="regbtn"
@@ -76,3 +80,7 @@ export default class LoginForm extends Component {
     );
   }
 }
+
+
+
+
