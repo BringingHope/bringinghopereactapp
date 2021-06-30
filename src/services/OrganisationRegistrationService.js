@@ -9,6 +9,7 @@ class OrganisationRegistrationService{
     }
 
     createOrganisation(OrgRegistrationDetails){
+        console.log("Hello Organisation")
         return axios.post(ORG_REGISTRATION_API_BASE_URL, OrgRegistrationDetails);
     }
 }

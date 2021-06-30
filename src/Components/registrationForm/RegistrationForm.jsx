@@ -4,30 +4,43 @@ import * as Yup from 'yup';
 import FormikControl from '../../formUiComponents/FormikControl';
 import OrganisationRegistrationService from '../../services/OrganisationRegistrationService';
 export default class RegistrationForm extends Component {
+
+    constructor(props) {
+        super(props)
+    
+        this.state = {
+             error: false
+        }
+    }
+    
   onSubmit = (values) => {
     let OrgRegistrationDetails = {
       firstName: values.firstName,
       organisationName: values.organisationName,
-      username: values.username,
-      phoneNumber: values.phoneNumber,
+      email: values.email,
       password: values.password,
+      phoneNumber: values.phoneNumber,
+      
     };
-
-    OrganisationRegistrationService.createVolunteer(
-      OrgRegistrationDetails
-    ).then((res) => {
+OrganisationRegistrationService.createOrganisation(OrgRegistrationDetails).then((res) => {
       console.log("Sent Successfully");
+    }).catch((err) =>{
+        console.log("Error while registrating");
+
+        this.setState({error : true});
+
     });
     console.log(OrgRegistrationDetails);
   };
+
 
     render() {
         const INITIAL_FORM_STATE = {
             firstName: '',
             organisationName: '',
-            username: '',
-            phoneNumber: '',
+            email: '',
             password: '',
+            phoneNumber: '',
             confirmPassword: ''
 
         };
@@ -38,7 +51,7 @@ export default class RegistrationForm extends Component {
                 .required('Organisation Name is required'),
             phoneNumber: Yup.string()
                 .required('Phone Number is required'),
-                username: Yup.string()
+                email: Yup.string()
                 .email('Email is invalid')
                 .required('Email is required'),
             password: Yup.string()
@@ -57,18 +70,18 @@ export default class RegistrationForm extends Component {
                                 ...INITIAL_FORM_STATE
                             }}
                             validationSchema={FORM_VALIDATION}
-                            onSubmit={values => {
-                                console.log(values);
-                            }}
+                            onSubmit={this.onSubmit}
                         >
                             {formik => (
                                 <div>
                                     <h1 className="my-4 font-weight-bold .display-4">Registration Form</h1>
+                                    {this.state.error && 
+                                    <p>Error</p>}
                                     <Form>
                                         <FormikControl control='input' label="First Name" name="firstName" type="text" />
                                         <FormikControl control='input' label="Organisation Name" name="organisationName" type="text" />
                                         <FormikControl control='input' label="Phone Number" name="phoneNumber" type="number" />           
-                                        <FormikControl control='input' label="Email" name="username" type="email" />
+                                        <FormikControl control='input' label="Email" name="email" type="email" />
                                         <FormikControl control='input' label="Password" name="password" type="password" />
                                         <FormikControl control='input' label="Confirm Password" name="confirmPassword" type="password" />
                                         <button className="btn btn-success m-1" type="submit">Register</button>
