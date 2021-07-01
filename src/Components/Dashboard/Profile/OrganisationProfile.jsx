@@ -1,15 +1,50 @@
-import React, { Component } from "react";
+import React, { Component  } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import FormikControl from "../../formUiComponents/FormikControl";
-import VolunteerService from "../../services/VolunteerService";
 import { Card } from "react-bootstrap";
+import FormikControl from "../../../formUiComponents/FormikControl";
+import OrganisationProfileService from "../../../services/OrganisationProfileService";
 
-export default class VolunteerForm extends Component {
-  onSubmit = (values,submitProps) => {
-    let Volunteer = {
-      firstName: values.firstName,
-      lastName: values.lastName,
+export default class OrganisationProfile extends Component {
+  
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+        id: "", 
+        
+        OrgProfileDetails:{
+        orgName: "",
+        email: "",
+        phone: "",
+        addressLine1: "",
+        addressLine2: "",
+        city: "",
+        state: "",
+        country: "",
+      }
+    }
+  }
+  
+ componentDidMount(){
+   OrganisationProfileService.getOrganisationProfileDetailsById(this.state.id).then((res) =>{
+     let orgDetails = res.data;
+     this.setState({
+      orgName: orgDetails.OrgProfileDetails.orgName,
+      email: orgDetails.OrgProfileDetails.email,
+      phone: orgDetails.OrgProfileDetails.phone,
+      addressLine1: orgDetails.OrgProfileDetails.addressLine1,
+      addressLine2: orgDetails.OrgProfileDetails.addressLine2,
+      city: orgDetails.OrgProfileDetails.city,
+      state: orgDetails.OrgProfileDetails.state,
+      country: orgDetails.OrgProfileDetails.country
+     });
+   });
+ }
+ 
+  onSubmit = (values, submitProps) => {
+    let OrgProfileDetails = {
+      orgName: values.orgName,
       email: values.email,
       phone: values.phone,
       addressLine1: values.addressLine1,
@@ -17,34 +52,22 @@ export default class VolunteerForm extends Component {
       city: values.city,
       state: values.state,
       country: values.country,
-      message: values.message,
     };
 
-    VolunteerService.createVolunteer(Volunteer).then((res) => {
+    OrganisationProfileService.updateOrganisationProfileDetailsById(OrgProfileDetails).then((res) =>{
       console.log("Sent Successfully");
     });
-    console.log(Volunteer);
+    console.log(OrgProfileDetails)
+
     submitProps.setSubmitting(false)
-    // submitProps.resetForm()
   };
 
   render() {
-    const INITIAL_FORM_STATE = {
-      firstName: "",
-      lastName: "",
-      email: "",
-      phone: "",
-      addressLine1: "",
-      addressLine2: "",
-      city: "",
-      state: "",
-      country: "",
-      message: "",
-    };
+    
+    
 
     const FORM_VALIDATION = Yup.object().shape({
-      firstName: Yup.string().required("Required"),
-      lastName: Yup.string().required("Required"),
+      orgName: Yup.string().required("Required"),
       email: Yup.string().email("Invalid email.").required("Required"),
       phone: Yup.number()
         .integer()
@@ -55,38 +78,31 @@ export default class VolunteerForm extends Component {
       city: Yup.string().required("Required"),
       state: Yup.string().required("Required"),
       country: Yup.string().required("Required"),
-      message: Yup.string(),
     });
-
+    
     return (
-      <div className="container mt-3">
-        <div className="row">
-          <div className="col-md-5">
+     <>
+
             <Formik
               initialValues={{
-                ...INITIAL_FORM_STATE,
+                
               }}
               validationSchema={FORM_VALIDATION}
               onSubmit={this.onSubmit}
+              enableReinitialize
             >
               {(formik) => (
                 <div>
                   <Card className="regform">
-                    <h1 className="regheading">Volunteer Form</h1>
+                    <h1 className="regheading">Donor Form</h1>
                     <Form>
                       <FormikControl
                         control="input"
-                        label="First Name"
-                        name="firstName"
+                        label="Organisation Name"
+                        name="orgName"
                         type="text"
                       />
-                      <FormikControl
-                        control="input"
-                        label="Last Name"
-                        name="lastName"
-                        type="text"
-                      />
-                      <FormikControl
+                       <FormikControl
                         control="input"
                         label="Phone Number"
                         name="phone"
@@ -128,37 +144,16 @@ export default class VolunteerForm extends Component {
                         name="country"
                         type="text"
                       />
-                      <FormikControl
-                        control="input"
-                        label="Message"
-                        name="message"
-                        type="text"
-                      />
-                      <p>
-                        Disclaimer: Hereby, you accept giving contact details
-                        for organisation volunteers too contact you.
-                      </p>{" "}
-                      <button className="regbtn" type="submit">
-                        Submit
-                      </button>
-                      <button className="regbtn" type="reset" disabled={!formik.isValid || formik.isSubmitting}>
-                        Reset
+
+                      <button className="regbtn" type="submit" disabled={!formik.isValid || formik.isSubmitting}>
+                        Save
                       </button>
                     </Form>
                   </Card>
                 </div>
               )}
             </Formik>
-          </div>
-          <div className="col-md-7">
-            <img
-              className="img-fluid w-100"
-              src="./img/VolunteerPage.jpg"
-              alt=""
-            />
-          </div>
-        </div>
-      </div>
+</>
     );
   }
 }

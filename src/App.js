@@ -9,7 +9,7 @@ import DonorForm from "./Components/donorForm/DonorForm";
 import VolunteerForm from "./Components/volunteerForm/VolunteerForm";
 import LoginForm from "./Components/loginForm/LoginForm";
 import PhoneOtpVerification from "./Components/phoneNumberVerification/PhoneOtpVerification";
-import Profile from "./Components/Dashboard/Profile/Profile";
+import Profile from "./Components/Dashboard/Profile/OrganisationProfile";
 import DashBoard1 from "./Components/Dashboard/DashBoard1/DashBoard1"
 import Events from "./Components/Dashboard/Events/Events"
 

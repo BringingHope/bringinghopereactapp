@@ -13,7 +13,7 @@ export default class RegistrationForm extends Component {
         }
     }
     
-  onSubmit = (values) => {
+  onSubmit = (values,submitProps) => {
     let OrgRegistrationDetails = {
       firstName: values.firstName,
       organisationName: values.organisationName,
@@ -31,6 +31,8 @@ OrganisationRegistrationService.createOrganisation(OrgRegistrationDetails).then(
 
     });
     console.log(OrgRegistrationDetails);
+    submitProps.setSubmitting(false)
+    // submitProps.resetForm()
   };
 
 
@@ -84,7 +86,7 @@ OrganisationRegistrationService.createOrganisation(OrgRegistrationDetails).then(
                                         <FormikControl control='input' label="Email" name="email" type="email" />
                                         <FormikControl control='input' label="Password" name="password" type="password" />
                                         <FormikControl control='input' label="Confirm Password" name="confirmPassword" type="password" />
-                                        <button className="btn btn-success m-1" type="submit">Register</button>
+                                        <button className="btn btn-success m-1" disabled={!formik.isValid || formik.isSubmitting} type="submit">Register</button>
                                         <button className="btn btn-dark" type="reset">Reset</button>
                                     </Form>
                                 </div>

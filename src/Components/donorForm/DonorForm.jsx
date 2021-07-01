@@ -6,7 +6,7 @@ import DonorService from "../../services/DonorService";
 import { Card } from "react-bootstrap";
 
 export default class DonorForm extends Component {
-  onSubmit = (values) => {
+  onSubmit = (values,submitProps) => {
     let donor = {
       firstName: values.firstName,
       lastName: values.lastName,
@@ -25,6 +25,10 @@ export default class DonorForm extends Component {
       console.log("Sent Successfully");
     });
     console.log(donor);
+
+    submitProps.setSubmitting(false)
+    // submitProps.resetForm()
+
   };
 
   render() {
@@ -63,6 +67,8 @@ export default class DonorForm extends Component {
       <div className="container mt-3">
         <div className="row">
           <div className="col-md-5">
+            
+
             <Formik
               initialValues={{
                 ...INITIAL_FORM_STATE,
@@ -148,7 +154,7 @@ export default class DonorForm extends Component {
                       <button className="regbtn" type="submit">
                         Submit
                       </button>
-                      <button className="regbtn" type="reset">
+                      <button className="regbtn" type="reset" disabled={!formik.isValid || formik.isSubmitting}>
                         Reset
                       </button>
                     </Form>
