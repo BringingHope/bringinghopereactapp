@@ -39,7 +39,6 @@ const Header = (props) => {
         <div className="search">
           <form onSubmit={submitSearch}>
             <input
-              className="sinput"
               type="textname"
               className={searchClass}
               placeholder="Search"

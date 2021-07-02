@@ -17,7 +17,7 @@ input[type="number"],
 textarea,
 select {
   display: block;
-  width: 400px;
+  width: 300px;
   padding: 12px 12px;
   font-size: 14px;
   line-height: 1;
@@ -27,6 +27,19 @@ select {
   border-radius: 4px;
 }
 
+/* textarea,
+select {
+  display: block;
+  width: 400px;
+  padding: 12px 12px;
+  font-size: 14px;
+  line-height: 7;
+
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+} */
+
 .form-control {
   margin-bottom: 90px;
   width: 300px;
@@ -35,6 +48,7 @@ select {
 .form-control:read-only {
   background-color: none;
   opacity: 1;
+  background: none;
   border: none;
 }
 
