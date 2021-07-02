@@ -7,7 +7,7 @@ class MainOrgPic extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      orgimage: null,
+      orgcoverimage: null,
       url: "",
       progress: 0,
     };
@@ -16,13 +16,15 @@ class MainOrgPic extends Component {
   }
   handleChange = (e) => {
     if (e.target.files[0]) {
-      const orgimage = e.target.files[0];
-      this.setState(() => ({ orgimage }));
+      const orgcoverimage = e.target.files[0];
+      this.setState(() => ({ orgcoverimage }));
     }
   };
   handleUpload = () => {
-    const { orgimage } = this.state;
-    const uploadTask = storage.ref(`orgimages/${orgimage.name}`).put(orgimage);
+    const { orgcoverimage } = this.state;
+    const uploadTask = storage
+      .ref(`orgcoverimages/${orgcoverimage.name}`)
+      .put(orgcoverimage);
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -39,8 +41,8 @@ class MainOrgPic extends Component {
       () => {
         // complete function ....
         storage
-          .ref("orgimages")
-          .child(orgimage.name)
+          .ref("orgcoverimages")
+          .child(orgcoverimage.name)
           .getDownloadURL()
           .then((url) => {
             console.log(url);
@@ -87,7 +89,7 @@ class MainOrgPic extends Component {
         <br />
         <img
           src={this.state.url || "http://via.placeholder.com/700x500"}
-          alt="Uploaded orgimages"
+          alt="Uploaded orgcoverimages"
           height="500"
           width="700"
         />

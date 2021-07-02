@@ -5,7 +5,7 @@ class OrgLogo extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      image: null,
+      orglogo: null,
       url: "",
       progress: 0,
     };
@@ -14,13 +14,13 @@ class OrgLogo extends Component {
   }
   handleChange = (e) => {
     if (e.target.files[0]) {
-      const image = e.target.files[0];
-      this.setState(() => ({ image }));
+      const orglogo = e.target.files[0];
+      this.setState(() => ({ orglogo }));
     }
   };
   handleUpload = () => {
-    const { image } = this.state;
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    const { orglogo } = this.state;
+    const uploadTask = storage.ref(`orglogos/${orglogo.name}`).put(orglogo);
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -37,8 +37,8 @@ class OrgLogo extends Component {
       () => {
         // complete function ....
         storage
-          .ref("images")
-          .child(image.name)
+          .ref("orglogos")
+          .child(orglogo.name)
           .getDownloadURL()
           .then((url) => {
             console.log(url);
@@ -70,7 +70,7 @@ class OrgLogo extends Component {
 
         <img
           src={this.state.url || "http://via.placeholder.com/100x100"}
-          alt="Uploaded images"
+          alt="Uploaded orglogos"
           height="100"
           width="100"
         />

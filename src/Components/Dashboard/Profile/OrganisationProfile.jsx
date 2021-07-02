@@ -39,6 +39,10 @@ export default class OrganisationProfile extends Component {
         update1: "",
         update2: "",
         update3: "",
+        //volunteers
+        volunteer1: "",
+        volunteer2: "",
+        volunteer3: "",
         //awards and recognition
         acreditation: "",
         awards: "",
@@ -71,6 +75,9 @@ export default class OrganisationProfile extends Component {
         acreditation: orgDetails.OrgProfileDetails.acredential,
         awards: orgDetails.OrgProfileDetails.awards,
         suppSpeech: orgDetails.OrgProfileDetails.suppSpeech,
+        volunteer1: orgDetails.OrgProfileDetails.volunteer1,
+        volunteer2: orgDetails.OrgProfileDetails.volunteer2,
+        volunteer3: orgDetails.OrgProfileDetails.volunteer3,
         update1: orgDetails.OrgProfileDetails.update1,
         update2: orgDetails.OrgProfileDetails.update2,
         update3: orgDetails.OrgProfileDetails.update3,
@@ -98,6 +105,9 @@ export default class OrganisationProfile extends Component {
       acreditation: values.acredential,
       awards: values.awards,
       suppSpeech: values.suppSpeech,
+      volunteer1: values.volunteer1,
+      volunteer2: values.volunteer2,
+      volunteer3: values.volunteer3,
       update1: values.update1,
       update2: values.update2,
       update3: values.update3,
@@ -123,17 +133,16 @@ export default class OrganisationProfile extends Component {
         .required("Required"),
       addressLine1: Yup.string().required("Required"),
       addressLine2: Yup.string(),
-      city: Yup.string().required("Required"),
-      state: Yup.string().required("Required"),
-      country: Yup.string().required("Required"),
       AboutOrg: Yup.string(),
       States: Yup.string(),
       project: Yup.string(),
-
       village: Yup.string(),
       acreditation: Yup.string(),
       awards: Yup.string(),
       suppSpeech: Yup.string(),
+      volunteer1: Yup.string(),
+      volunteer2: Yup.string(),
+      volunteer3: Yup.string(),
       update1: Yup.string(),
       update2: Yup.string(),
       update3: Yup.string(),
@@ -175,7 +184,21 @@ export default class OrganisationProfile extends Component {
                       />
                     </CardBody>
                   </Card>
-
+                  <Card body className="Reach">
+                    ABOUT ORGANISATION
+                  </Card>
+                  <Card className="text-center">
+                    <CardBody className="orgacre">
+                      <FormikControl
+                        fullWidth
+                        rows="15"
+                        control="textarea"
+                        label=""
+                        name="AboutOrg"
+                        type="work"
+                      />
+                    </CardBody>
+                  </Card>
                   <Card body className="Reach">
                     OUR WORK
                   </Card>
@@ -359,7 +382,7 @@ export default class OrganisationProfile extends Component {
                             rows="5"
                             control="textarea"
                             label="Conatct details"
-                            name="update1"
+                            name="volunteer1"
                             type="work"
                           />
                         </Card>
@@ -371,7 +394,7 @@ export default class OrganisationProfile extends Component {
                             rows="5"
                             control="textarea"
                             label="Contact details"
-                            name="update2"
+                            name="volunteer2"
                             type="work"
                           />
                         </Card>
@@ -382,8 +405,8 @@ export default class OrganisationProfile extends Component {
                           <FormikControl
                             rows="5"
                             control="textarea"
-                            label="contact details"
-                            name="update3"
+                            label="Contact details"
+                            name="volunteer3"
                             type="work"
                           />
                         </Card>
@@ -415,23 +438,10 @@ export default class OrganisationProfile extends Component {
                             name="addressLine1"
                             type="text"
                           />
-
                           <FormikControl
                             control="input"
-                            label="City"
-                            name="city"
-                            type="text"
-                          />
-                          <FormikControl
-                            control="input"
-                            label="City"
-                            name="city"
-                            type="text"
-                          />
-                          <FormikControl
-                            control="input"
-                            label="City"
-                            name="city"
+                            label="Address Line 2"
+                            name="addressLine2"
                             type="text"
                           />
                         </CardText>

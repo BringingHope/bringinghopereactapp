@@ -5,7 +5,7 @@ class ImageUpload extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      image: null,
+      eventimage: null,
       url: "",
       progress: 0,
     };
@@ -14,13 +14,15 @@ class ImageUpload extends Component {
   }
   handleChange = (e) => {
     if (e.target.files[0]) {
-      const image = e.target.files[0];
-      this.setState(() => ({ image }));
+      const eventimage = e.target.files[0];
+      this.setState(() => ({ eventimage }));
     }
   };
   handleUpload = () => {
-    const { image } = this.state;
-    const uploadTask = storage.ref(`images/${image.name}`).put(image);
+    const { eventimage } = this.state;
+    const uploadTask = storage
+      .ref(`eventimages/${eventimage.name}`)
+      .put(eventimage);
     uploadTask.on(
       "state_changed",
       (snapshot) => {
@@ -37,8 +39,8 @@ class ImageUpload extends Component {
       () => {
         // complete function ....
         storage
-          .ref("images")
-          .child(image.name)
+          .ref("eventimages")
+          .child(eventimage.name)
           .getDownloadURL()
           .then((url) => {
             console.log(url);
@@ -72,7 +74,7 @@ class ImageUpload extends Component {
         <br />
         <img
           src={this.state.url || "http://via.placeholder.com/400x300"}
-          alt="Uploaded images"
+          alt="Uploaded eventimages"
           height="300"
           width="300"
         />
