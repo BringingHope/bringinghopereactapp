@@ -67,13 +67,13 @@ class ImageUpload extends Component {
         <br />
 
         <input type="file" onChange={this.handleChange} />
-        <button className="buttonorg" onClick={this.handleUpload}>
+        <button type="button" className="buttonorg" onClick={this.handleUpload}>
           <i className="fas fa-cloud-upload-alt"></i>
           Upload
         </button>
         <br />
         <img
-          src={this.state.url || "http://via.placeholder.com/400x300"}
+          src={this.state.url || "http://via.placeholder.com/300x300"}
           alt="Uploaded eventimages"
           height="300"
           width="300"

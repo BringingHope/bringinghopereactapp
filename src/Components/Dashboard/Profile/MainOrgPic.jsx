@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { storage } from "../../Firebase/firebaseConfig";
 import "./Profile.css";
-import { FcPlus } from "react-icons/fc";
+import { FiPlusCircle } from "react-icons/fi";
 
 class MainOrgPic extends Component {
   constructor(props) {
@@ -53,11 +53,9 @@ class MainOrgPic extends Component {
   };
   render() {
     const style = {
-      height: "100vh",
       display: "flex",
       flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
+      alignItems: "flex-end",
     };
     const upload = {
       display: "none",
@@ -65,34 +63,29 @@ class MainOrgPic extends Component {
     };
     return (
       <div style={style}>
-        <progress
-          className="progress-bar"
-          value={this.state.progress}
-          max="100"
+        <img
+          src={this.state.url || "http://via.placeholder.com/1140x300"}
+          alt="Uploaded orgcoverimages"
+          height="300"
+          width="100%"
         />
-
-        <label for="firstmain">
-          <h1>
-            <FcPlus />
-          </h1>
-        </label>
         <input
           type="file"
           id="firstmain"
           style={upload}
           onChange={this.handleChange}
         />
-        <button className="buttonorg" onClick={this.handleUpload}>
-          <i className="fas fa-cloud-upload-alt"></i>
-          Upload
-        </button>
-        <br />
-        <img
-          src={this.state.url || "http://via.placeholder.com/700x500"}
-          alt="Uploaded orgcoverimages"
-          height="500"
-          width="700"
-        />
+        <div className="covorg">
+          <label htmlFor="firstmain">
+            <h1 className="orglogoo1">
+              <FiPlusCircle />
+            </h1>
+          </label>
+          <button className="covbtn" onClick={this.handleUpload}>
+            <i className="fas fa-cloud-upload-alt"></i>
+            Upload
+          </button>
+        </div>
       </div>
     );
   }

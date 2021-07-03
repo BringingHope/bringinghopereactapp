@@ -164,33 +164,30 @@ export default class OrganisationProfile extends Component {
                 <Container>
                   <Card body className="orgname">
                     <MainOrgPic />
-                    <h5>Organisation Cover Pic</h5>
+                    <Card>
+                      <OrgLogo />
+
+                      <h3 className="Reach1">ORGANISATION NAME</h3>
+                      <div className="text-center">
+                        <CardBody>
+                          <FormikControl
+                            rows="3"
+                            control="textarea"
+                            label=""
+                            name="orgName"
+                            type="work"
+                          />
+                        </CardBody>
+                      </div>
+                    </Card>
                   </Card>
-                  <Card body className="orgname1">
-                    <OrgLogo />
-                    <h5>Organisation logo</h5>
-                  </Card>
-                  <Card body className="Reach">
-                    ORGANISATION NAME
-                  </Card>
-                  <Card className="text-center">
-                    <CardBody className="orgacre">
-                      <FormikControl
-                        rows="3"
-                        control="textarea"
-                        label=""
-                        name="orgName"
-                        type="work"
-                      />
-                    </CardBody>
-                  </Card>
+
                   <Card body className="Reach">
                     ABOUT ORGANISATION
                   </Card>
                   <Card className="text-center">
                     <CardBody className="orgacre">
                       <FormikControl
-                        fullWidth
                         rows="15"
                         control="textarea"
                         label=""
