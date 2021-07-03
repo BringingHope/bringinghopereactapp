@@ -2,41 +2,50 @@ import React, { Component } from 'react'
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
 import FormikControl from '../../formUiComponents/FormikControl';
-import OrganisationRegistrationService from '../../services/OrganisationRegistrationService';
-export default class RegistrationForm extends Component {
+import { register } from "../../actions/auth";
+import { connect } from "react-redux";
+
+
+class RegistrationForm extends Component {
 
     constructor(props) {
         super(props)
-    
+
         this.state = {
-             error: false
+            successful: false
         }
     }
-    
-  onSubmit = (values,submitProps) => {
-    let OrgRegistrationDetails = {
-      firstName: values.firstName,
-      organisationName: values.organisationName,
-      email: values.email,
-      password: values.password,
-      phoneNumber: values.phoneNumber,
-      
+    onSubmit = (values, submitProps) => {
+        let OrgRegistrationDetails = {
+            firstName: values.firstName,
+            organisationName: values.organisationName,
+            email: values.email,
+            password: values.password,
+            phoneNumber: values.phoneNumber,
+
+        };
+
+        this.props
+            .dispatch(
+                register(OrgRegistrationDetails)
+            )
+            .then(() => {
+                this.setState({
+                    successful: true,
+                });
+            })
+            .catch(() => {
+                this.setState({
+                    successful: false,
+                });
+            });
+
+        submitProps.setSubmitting(false)
     };
-OrganisationRegistrationService.createOrganisation(OrgRegistrationDetails).then((res) => {
-      console.log("Sent Successfully");
-    }).catch((err) =>{
-        console.log("Error while registrating");
-
-        this.setState({error : true});
-
-    });
-    console.log(OrgRegistrationDetails);
-    submitProps.setSubmitting(false)
-    // submitProps.resetForm()
-  };
 
 
     render() {
+
         const INITIAL_FORM_STATE = {
             firstName: '',
             organisationName: '',
@@ -46,6 +55,7 @@ OrganisationRegistrationService.createOrganisation(OrgRegistrationDetails).then(
             confirmPassword: ''
 
         };
+
         const FORM_VALIDATION = Yup.object({
             firstName: Yup.string()
                 .required('Name is required'),
@@ -53,7 +63,7 @@ OrganisationRegistrationService.createOrganisation(OrgRegistrationDetails).then(
                 .required('Organisation Name is required'),
             phoneNumber: Yup.string()
                 .required('Phone Number is required'),
-                email: Yup.string()
+            email: Yup.string()
                 .email('Email is invalid')
                 .required('Email is required'),
             password: Yup.string()
@@ -63,6 +73,9 @@ OrganisationRegistrationService.createOrganisation(OrgRegistrationDetails).then(
                 .oneOf([Yup.ref('password'), null], 'Password must match')
                 .required('Confirm password is required'),
         })
+
+        const { message } = this.props;
+
         return (
             <div className="container mt-3">
                 <div className="row">
@@ -77,18 +90,25 @@ OrganisationRegistrationService.createOrganisation(OrgRegistrationDetails).then(
                             {formik => (
                                 <div>
                                     <h1 className="my-4 font-weight-bold .display-4">Registration Form</h1>
-                                    {this.state.error && 
-                                    <p>Error</p>}
+                                    {this.state.error &&
+                                        <p>Error</p>}
                                     <Form>
                                         <FormikControl control='input' label="First Name" name="firstName" type="text" />
                                         <FormikControl control='input' label="Organisation Name" name="organisationName" type="text" />
-                                        <FormikControl control='input' label="Phone Number" name="phoneNumber" type="number" />           
+                                        <FormikControl control='input' label="Phone Number" name="phoneNumber" type="number" />
                                         <FormikControl control='input' label="Email" name="email" type="email" />
                                         <FormikControl control='input' label="Password" name="password" type="password" />
                                         <FormikControl control='input' label="Confirm Password" name="confirmPassword" type="password" />
                                         <button className="btn btn-success m-1" disabled={!formik.isValid || formik.isSubmitting} type="submit">Register</button>
                                         <button className="btn btn-dark" type="reset">Reset</button>
                                     </Form>
+                                    {message && (
+                                        <div className="form-group">
+                                            <div className={this.state.successful ? "alert alert-success" : "alert alert-danger"} role="alert">
+                                                {message}
+                                            </div>
+                                        </div>
+                                    )}
                                 </div>
                             )}
                         </Formik>
@@ -101,3 +121,11 @@ OrganisationRegistrationService.createOrganisation(OrgRegistrationDetails).then(
         )
     }
 }
+function mapStateToProps(state) {
+    const { message } = state.message;
+    return {
+        message,
+    };
+}
+
+export default connect(mapStateToProps)(RegistrationForm);

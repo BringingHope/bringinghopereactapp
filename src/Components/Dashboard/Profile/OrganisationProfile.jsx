@@ -10,7 +10,11 @@ import OrganisationProfileService from "../../../services/OrganisationProfileSer
 import DashBoard1 from "../DashBoard1/DashBoard1";
 import MainOrgPic from "./MainOrgPic";
 import OrgLogo from "./OrgLogo";
-export default class OrganisationProfile extends Component {
+import { Redirect } from 'react-router-dom';
+import { connect } from "react-redux";
+
+class OrganisationProfile extends Component {
+
   constructor(props) {
     super(props);
 
@@ -124,6 +128,13 @@ export default class OrganisationProfile extends Component {
   };
 
   render() {
+
+    const { user: currentUser } = this.props;
+
+    if (!currentUser) {
+      return <Redirect to="/login" />;
+    }
+
     const FORM_VALIDATION = Yup.object().shape({
       orgName: Yup.string().required("Required"),
       email: Yup.string().email("Invalid email.").required("Required"),
@@ -469,3 +480,11 @@ export default class OrganisationProfile extends Component {
     );
   }
 }
+function mapStateToProps(state) {
+  const { user } = state.auth;
+  return {
+    user,
+  };
+}
+
+export default connect(mapStateToProps)(OrganisationProfile);

@@ -7,7 +7,6 @@ import {
   SidebarContent,
 } from "react-pro-sidebar";
 import { NavLink } from "react-router-dom";
-
 import { RiMoneyDollarBoxFill } from "react-icons/ri";
 import { FaUserAlt, FaHandsHelping } from "react-icons/fa";
 import { BiMenu, BiLogOut } from "react-icons/bi";
@@ -16,7 +15,10 @@ import { MdEvent } from "react-icons/md";
 import "react-pro-sidebar/dist/css/styles.css";
 import "./DashBoard1.css";
 
+
+
 const DashBoard1 = () => {
+
   const [menuCollapse, setMenuCollapse] = useState(false);
 
   const menuIconClick = () => {
@@ -63,7 +65,7 @@ const DashBoard1 = () => {
                 </NavLink>
               </MenuItem>
               <MenuItem active={true} icon={<BiLogOut />}>
-                <NavLink className="menulink" to="/dash/profile" exact>
+                <NavLink className="menulink" onClick={this.logOut} to="/login" exact>
                   Logout
                 </NavLink>
               </MenuItem>
@@ -73,6 +75,6 @@ const DashBoard1 = () => {
       </div>
     </>
   );
-};
 
+};
 export default DashBoard1;

@@ -48,7 +48,7 @@ function Navigation(props) {
       <div className="head">.</div>
       <nav className="navbar navbar-expand-lg navbar-mainbg">
         <NavLink className="navbar-brand navbar-logo" to="/" exact>
-          <img className="img1" src="./img/lg.jpg" alt="" />
+          <img className="img1" src="./img/lg.jpg" alt=" BHO " />
         </NavLink>
 
         <button

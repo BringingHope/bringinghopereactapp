@@ -3,29 +3,53 @@ import { Formik, Form } from 'formik'
 import * as Yup from 'yup'
 import FormikControl from '../../formUiComponents/FormikControl';
 import { Card } from "react-bootstrap";
+import { connect } from "react-redux";
+import { login } from "../../actions/auth";
+import { Redirect } from 'react-router-dom';
 
 
-
-export default class LoginForm extends Component {
-    render() {
-        const INITIAL_FORM_STATE = {
-            username: '',
-            password: ''
-        };
-
-        const FORM_VALIDATION = Yup.object().shape({
-            username: Yup.string()
-                .email('Email is invalid')
-                .required('Required'),
-            password: Yup.string()
-                .min(8, 'Password must be at least 8 characters')
-                .required('Required')
-        });
+class Login extends Component {
 
 
-    const onSubmit = (values) => {
-      console.log("Form data", values);
+  onSubmit = (values, submitProps) => {
+    let LoginDetails = {
+
+      email: values.email,
+      password: values.password,
+
     };
+    const { dispatch, history } = this.props;
+
+    dispatch(login(LoginDetails)).then(() => {
+      history.push("/profile");
+      window.location.reload();
+    }).catch(() => { submitProps.setSubmitting(false) })
+
+    submitProps.setSubmitting(false)
+  };
+
+  render() {
+    const INITIAL_FORM_STATE = {
+      email: '',
+      password: ''
+    };
+
+    const FORM_VALIDATION = Yup.object().shape({
+      email: Yup.string()
+        .email('Email is invalid')
+        .required('Required'),
+      password: Yup.string()
+        .min(8, 'Password must be at least 8 characters')
+        .required('Required')
+    });
+
+
+
+    const { isLoggedIn, message } = this.props;
+
+    if (isLoggedIn) {
+      return <Redirect to="/dash/profile" />;
+    }
 
     return (
       <div className="container mt-3">
@@ -34,11 +58,12 @@ export default class LoginForm extends Component {
             <Formik
               initialValues={{ ...INITIAL_FORM_STATE }}
               validationSchema={FORM_VALIDATION}
-              onSubmit={onSubmit}
+              onSubmit={this.onSubmit}
             >
               {(formik) => (
                 <Card className="regform">
                   <h1 className="regheading">Login</h1>
+
                   <Form>
                     <FormikControl
                       control="input"
@@ -51,7 +76,7 @@ export default class LoginForm extends Component {
                       control="input"
                       type="password"
                       label="Password"
-                      name="username"
+                      name="password"
                     />
                     <button
                       className="regbtn"
@@ -72,6 +97,13 @@ export default class LoginForm extends Component {
                       </div>
                     </div>
                   </Form>
+                  {message && (
+                    <div className="form-group">
+                      <div className="alert alert-danger" role="alert">
+                        {message}
+                      </div>
+                    </div>
+                  )}
                 </Card>
               )}
             </Formik>
@@ -81,7 +113,16 @@ export default class LoginForm extends Component {
     );
   }
 }
+function mapStateToProps(state) {
+  const { isLoggedIn } = state.auth;
+  const { message } = state.message;
+  return {
+    isLoggedIn,
+    message
+  };
+}
 
+export default connect(mapStateToProps)(Login);
 
 
 
