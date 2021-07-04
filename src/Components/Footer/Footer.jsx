@@ -4,9 +4,10 @@ import { Link } from "react-router-dom";
 import { Container, Row, List } from "reactstrap";
 import "./Footer.css";
 import React, { Component } from "react";
-
+import styled from "styled-components";
 export default class Footer extends Component {
   render() {
+    const FooterLink = styled.a``;
     return (
       <>
         <footer className="footer">
@@ -77,24 +78,24 @@ export default class Footer extends Component {
                 <List className="social-links">
                   <ul>
                     <li>
-                      <Link to="#">
+                      <FooterLink to="#">
                         <Icon className="fab fa-facebook-f"></Icon>
-                      </Link>
+                      </FooterLink>
                     </li>
                     <li>
-                      <Link to="#">
+                      <FooterLink href="">
                         <Icon className="fab fa-twitter"></Icon>
-                      </Link>
+                      </FooterLink>
                     </li>
                     <li>
-                      <Link to="#">
+                      <FooterLink href="https://instagram.com/kush.sanjana">
                         <Icon className="fab fa-instagram"></Icon>
-                      </Link>
+                      </FooterLink>
                     </li>
                     <li>
-                      <Link to="#">
+                      <FooterLink to="#">
                         <Icon className="fab fa-linkedin-in"></Icon>
-                      </Link>
+                      </FooterLink>
                     </li>
                   </ul>
                 </List>
