@@ -63,7 +63,13 @@ class Login extends Component {
               {(formik) => (
                 <Card className="regform">
                   <h1 className="regheading">Login</h1>
-
+                  {message && (
+                    <div className="form-group">
+                      <div className="alert alert-danger" role="alert">
+                        {message}
+                      </div>
+                    </div>
+                  )}
                   <Form>
                     <FormikControl
                       control="input"
@@ -97,13 +103,7 @@ class Login extends Component {
                       </div>
                     </div>
                   </Form>
-                  {message && (
-                    <div className="form-group">
-                      <div className="alert alert-danger" role="alert">
-                        {message}
-                      </div>
-                    </div>
-                  )}
+                  
                 </Card>
               )}
             </Formik>

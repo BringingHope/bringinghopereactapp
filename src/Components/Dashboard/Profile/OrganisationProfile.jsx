@@ -7,16 +7,16 @@ import { Col } from "reactstrap";
 import ImageUpload from "./ImageUpload";
 import FormikControl from "../../../formUiComponents/FormikControl";
 import OrganisationProfileService from "../../../services/OrganisationProfileService";
-import DashBoard1 from "../DashBoard1/DashBoard1";
 import MainOrgPic from "./MainOrgPic";
 import OrgLogo from "./OrgLogo";
 import { Redirect } from 'react-router-dom';
 import { connect } from "react-redux";
+import Sidebar from "../sidebar/Sidebar";
 
 class OrganisationProfile extends Component {
 
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       id: "",
@@ -128,7 +128,7 @@ class OrganisationProfile extends Component {
   };
 
   render() {
-
+    
     const { user: currentUser } = this.props;
 
     if (!currentUser) {
@@ -161,7 +161,7 @@ class OrganisationProfile extends Component {
 
     return (
       <>
-        <DashBoard1 />
+        <Sidebar />
         <Formik
           initialValues={{}}
           validationSchema={FORM_VALIDATION}
