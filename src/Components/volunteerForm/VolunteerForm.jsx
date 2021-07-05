@@ -6,8 +6,17 @@ import VolunteerService from "../../services/VolunteerService";
 import { Card } from "react-bootstrap";
 
 export default class VolunteerForm extends Component {
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       id : this.props.match.params.id
+    }
+  }
   onSubmit = (values,submitProps) => {
+    console.log('id:', this.state.id);
     let Volunteer = {
+      organisationId : this.state.id,
       firstName: values.firstName,
       lastName: values.lastName,
       email: values.email,

@@ -6,8 +6,21 @@ import DonorService from "../../services/DonorService";
 import { Card } from "react-bootstrap";
 
 export default class DonorForm extends Component {
+  
+  constructor(props) {
+    super(props)
+  
+    this.state = {
+       id : ""
+      //  this.props.match.params.id
+    }
+  }
+  
   onSubmit = (values,submitProps) => {
+    console.log('id:', this.state.id);
+    console.log(this.props);
     let donor = {
+      organisationId : this.state.id,
       firstName: values.firstName,
       lastName: values.lastName,
       email: values.email,

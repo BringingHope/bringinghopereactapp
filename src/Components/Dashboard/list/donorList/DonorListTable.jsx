@@ -4,19 +4,23 @@ import { GROUPED_COLUMNS } from './Columns'
 import '../tableComponents/table.css'
 import { GlobalFilter } from '../tableComponents/GlobalFilter'
 import { ColumnFilter } from '../tableComponents/ColumnFilter'
-import DonorService from '../../../../services/DonorService'
+import OrganisationDashboardService from '../../../../services/OrganisationDashboardService'
+import { connect } from "react-redux";
+import { Redirect } from 'react-router-dom';
 
+export const DonorListTable = (props) => {
 
-export const DonorListTable = () => {
-
+    // const {match}= props;
+    // let{organisationId}= match.params;
+    const [organisationId, setorganisationId] = useState("1");
     const [list, setList] = useState([]);
 
     useEffect(() => {
-        DonorService.getDonor().then((res) => {
+        OrganisationDashboardService.getDonorsByOrganisationId(organisationId).then((res) => {
             setList(res.data)
 
         })
-    }, [])
+    }, [organisationId])
 
     const columns = useMemo(() => GROUPED_COLUMNS, [])
     const data = useMemo(() => list, [list])
@@ -55,7 +59,8 @@ export const DonorListTable = () => {
     )
 
     const { pageIndex, pageSize, globalFilter } = state
-
+    
+   
     return (
         <>
             <GlobalFilter filter={globalFilter} setFilter={setGlobalFilter} />
@@ -130,3 +135,11 @@ export const DonorListTable = () => {
         </>
     )
 }
+function mapStateToProps(state) {
+    const { user } = state.auth;
+    return {
+      user,
+    };
+  }
+  
+export default connect(mapStateToProps)(DonorListTable);

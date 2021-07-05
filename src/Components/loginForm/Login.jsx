@@ -21,7 +21,7 @@ class Login extends Component {
     const { dispatch, history } = this.props;
 
     dispatch(login(LoginDetails)).then(() => {
-      history.push("/profile");
+      history.push("/dashboard");
       window.location.reload();
     }).catch(() => { submitProps.setSubmitting(false) })
 
@@ -48,7 +48,7 @@ class Login extends Component {
     const { isLoggedIn, message } = this.props;
 
     if (isLoggedIn) {
-      return <Redirect to="/dash/profile" />;
+      return <Redirect to="/dashboard" />;
     }
 
     return (

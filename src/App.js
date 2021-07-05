@@ -28,14 +28,14 @@ function App() {
           <Route path="/blog" exact component={() => <BlogHome />} />
           <Route path="/blog/bloghome" exact component={() => <Blog />} />
           <Route path="/post/:postId" component={Post1} />
-          <Route path="/dash/events" exact component={() => <Events />} />
-          <Route path="/dash" exact component={() => <Sidebar />} />
-          <Route path="/dash/profile" exact component={() => <OrganisationProfile />} />
-          <Route path="/dash/donorlist" exact component={() => < DonorListTable/>} />
-          <Route path="/dash/volunteerlist" exact component={() => <VolunteerListTable />} />
+          <Route path="/dashboard" exact component={() => <Sidebar />} />
+          <Route path="/dashboard/profile/:id/:organisationName" exact component={() => <OrganisationProfile />} />
+          <Route path="/dashboard/events/:id/:organisationName" exact component={() => <Events />} />
+          <Route path="/dashboard/donorlist/:id/:organisationName" exact component={() => < DonorListTable/>} />
+          <Route path="/dashboard/volunteerlist/:id/:organisationName" exact component={() => <VolunteerListTable />} />
           <Route path="/registration" exact component={() => <RegistrationForm />} />
-          <Route path="/donorForm" exact component={() => <DonorForm />} />
-          <Route path="/volunteerForm" exact component={() => <VolunteerForm />} />
+          <Route path="/donate/:organisationName/:id" exact component={() => <DonorForm />} />
+          <Route path="/volunteer/:organisationName/:id" exact component={() => <VolunteerForm />} />
           <Route path="/Login" exact component={() => <Login />} />
           <Route path="/OtpVerification" exact component={() => <PhoneOtpVerification />} />
 

@@ -1,14 +1,15 @@
 import React, { Component } from "react";
-import { Container } from "reactstrap";
 import DashBoard1 from "../sidebar/Sidebar";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
-import { Card, CardText, CardBody, Container, Row } from "reactstrap";
-import { Col } from "reactstrap";
+import {Col, Card, CardText, CardBody, Container, Row } from "reactstrap";
 import "./Events.css";
 import FormikControl from "../../../formUiComponents/FormikControl";
-import OrganisationProfileService from "../../../services/OrganisationProfileService";
+import OrganisationProfileService from "../../../services/OrganisationDashboardService";
 import ImageUpload from "../Profile/ImageUpload";
+
+
+
 export default class Events extends Component {
   constructor(props) {
     super(props);
