@@ -337,7 +337,6 @@ class OrganisationProfile extends Component {
                   <Card className="text-center">
                     <CardBody className="orgacre">
                       <FormikControl
-                        fullWidth
                         rows="15"
                         control="textarea"
                         label=""
@@ -352,7 +351,6 @@ class OrganisationProfile extends Component {
                   <Card className="text-center">
                     <CardBody className="orgacre">
                       <FormikControl
-                        fullWidth
                         rows="15"
                         control="textarea"
                         label=""
@@ -367,7 +365,6 @@ class OrganisationProfile extends Component {
                   <Card className="text-center">
                     <CardBody className="orgacre">
                       <FormikControl
-                        fullWidth
                         rows="15"
                         control="textarea"
                         label=""

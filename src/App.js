@@ -27,6 +27,13 @@ function App() {
           <Route path="/list" exact component={() => <List />} />
           <Route path="/blog" exact component={() => <BlogHome />} />
           <Route path="/blog/bloghome" exact component={() => <Blog />} />
+          <Route path="/post/:postId" exact component={Post1} />
+          <Route path="/dash" exact component={() => <DashBoard1 />} />
+          <Route path="/dash/profile" exact component={() => <Profile />} />
+          <Route path="/dash/events" exact component={() => <Events />} />
+          {/* <Route path="/login" exact component={() => <Login />} /> */}
+          <Route path="/dash" exact component={() => <DashBoard1 />} />
+          <Route path="/dash/profile" exact component={() => <Profile />} />
           <Route path="/post/:postId" component={Post1} />
           <Route path="/dashboard" exact component={() => <Sidebar />} />
           <Route path="/dashboard/profile/:id/:organisationName" exact component={() => <OrganisationProfile />} />
