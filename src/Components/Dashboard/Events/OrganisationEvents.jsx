@@ -10,7 +10,7 @@ import OrganisationProfileService from "../../../services/OrganisationDashboardS
 import ImageUpload from "../Profile/ImageUpload";
 import { CardBody } from "reactstrap";
 
-export default class Events extends Component {
+export default class OrganisationEvents extends Component {
   constructor(props) {
     super(props);
 
@@ -113,7 +113,6 @@ export default class Events extends Component {
 
     return (
       <>
-        <DashBoard1 />
         <Formik
           initialValues={{}}
           validationSchema={FORM_VALIDATION}

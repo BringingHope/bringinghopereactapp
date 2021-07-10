@@ -1,54 +1,37 @@
 import React, { Component } from "react";
-import {
-  ProSidebar,
-  Menu,
-  MenuItem,
-  SidebarHeader,
-  SidebarContent,
-} from "react-pro-sidebar";
+import { ProSidebar, Menu, MenuItem, SidebarHeader, SidebarContent } from "react-pro-sidebar";
 import { NavLink } from "react-router-dom";
 import { RiMoneyDollarBoxFill } from "react-icons/ri";
 import { FaUserAlt, FaHandsHelping } from "react-icons/fa";
 import { BiMenu, BiLogOut } from "react-icons/bi";
 import { GrShieldSecurity } from "react-icons/gr";
 import { MdEvent } from "react-icons/md";
-import { logout } from "../../../actions/auth";
-import { clearMessage } from "../../../actions/message";
-import { history } from "../../../helpers/history";
+import { logout } from "../../../redux/authentication/authActions";
+import { clearMessage } from "../../../redux/message/messageActions";
+import { history } from '../../../redux/helpers/history';
 import { connect } from "react-redux";
-// import { Redirect } from "react-router-dom";
+import { getOrganisationDetailsByToken } from "../../../redux";
+import { Redirect } from 'react-router-dom';
 import "react-pro-sidebar/dist/css/styles.css";
 import "./Sidebar.css";
-import OrganisationDashboardService from "../../../services/OrganisationDashboardService";
 
 class Sidebar extends Component {
   constructor(props) {
-    super(props);
+    super(props)
 
     this.state = {
       menuCollapse: false,
-      currentUser: undefined,
-      organisations: [],
-    };
-    this.logOut = this.logOut.bind(this);
+    }
+    this.LogOut = this.LogOut.bind(this);
     this.menuIconClick = this.menuIconClick.bind(this);
 
     history.listen((location) => {
-      props.dispatch(clearMessage()); // clear message when changing location
+      this.props.dispatch(clearMessage()); // clear message when changing location
     });
   }
 
   componentDidMount() {
-    const user = this.props.user;
-
-    if (user) {
-      this.setState({
-        currentUser: user,
-      });
-    }
-    OrganisationDashboardService.getOrganisationDetailsByToken().then((res) => {
-      this.setState({ organisations: res.data });
-    });
+    this.props.dispatch(getOrganisationDetailsByToken());
   }
 
   menuIconClick = () => {
@@ -57,17 +40,21 @@ class Sidebar extends Component {
       : this.setState({ menuCollapse: true });
   };
 
-  logOut() {
+  LogOut() {
     this.props.dispatch(logout());
   }
 
   render() {
-    // const { user: currentUser } = this.props;
+    const { isLoggedIn, userdata } = this.props;
+    if (!isLoggedIn) {
+      return <Redirect to="/login" />;
+    }
 
-    // if (!currentUser) {
-    //   return <Redirect to="/login" />;
-    // }
-    return (
+    return userdata.loading ? (
+      <h2>Loading</h2>
+    ) : userdata.error ? (
+      <h2>{userdata.error}</h2>
+    ) :(
       <>
         <div id="header">
           <ProSidebar collapsed={this.state.menuCollapse}>
@@ -81,57 +68,33 @@ class Sidebar extends Component {
             </SidebarHeader>
             <SidebarContent>
               <Menu iconShape="square">
-                <MenuItem active={true} icon={<FaUserAlt />}>
-                  <NavLink
-                    className="menulink"
-                    exact
-                    to={`dashboard/profile/${this.state.organisations.id}/${this.state.organisations.organisationName}`}
-                  >
+                <MenuItem active={true} icon={<FaUserAlt />} >
+                  <NavLink className="menulink" exact to={`dashboard/profile/${userdata.userdetails.id}/${userdata.userdetails.organisationName}`} >
                     Profile
                   </NavLink>
                 </MenuItem>
-                <MenuItem active={true} icon={<MdEvent />}>
-                  <NavLink
-                    className="menulink"
-                    exact
-                    to={`dashboard/events/${this.state.organisations.id}/${this.state.organisations.organisationName}`}
-                  >
+                <MenuItem active={true} icon={<MdEvent />} >
+                  <NavLink className="menulink" exact to={`dashboard/events/${userdata.userdetails.id}/${userdata.userdetails.organisationName}`} >
                     Events
                   </NavLink>
                 </MenuItem>
-                <MenuItem active={true} icon={<RiMoneyDollarBoxFill />}>
-                  <NavLink
-                    className="menulink"
-                    exact
-                    to={`dashboard/donorlist/${this.state.organisations.id}/${this.state.organisations.organisationName}`}
-                  >
+                <MenuItem active={true} icon={<RiMoneyDollarBoxFill />} >
+                  <NavLink className="menulink" exact to={`dashboard/donorlist/${userdata.userdetails.id}/${userdata.userdetails.organisationName}`}  >
                     Donor List
                   </NavLink>
                 </MenuItem>
                 <MenuItem active={true} icon={<FaHandsHelping />}>
-                  <NavLink
-                    className="menulink"
-                    exact
-                    to={`dashboard/volunteerlist/${this.state.organisations.id}/${this.state.organisations.organisationName}`}
-                  >
+                  <NavLink className="menulink" exact to={`dashboard/volunteerlist/${userdata.userdetails.id}/${userdata.userdetails.organisationName}`}>
                     Volunteer List
                   </NavLink>
                 </MenuItem>
-                <MenuItem active={true} icon={<GrShieldSecurity />}>
-                  <NavLink
-                    className="menulink"
-                    exact
-                    to={`dashboard/volunteerlist/${this.state.organisations.id}/${this.state.organisations.organisationName}`}
-                  >
+                <MenuItem active={true} icon={<GrShieldSecurity />} >
+                  <NavLink className="menulink" exact to={`dashboard/security/${userdata.userdetails.id}/${userdata.userdetails.organisationName}`} >
                     Security
                   </NavLink>
                 </MenuItem>
-                <MenuItem
-                  active={true}
-                  icon={<BiLogOut />}
-                  onClick={this.logOut}
-                >
-                  <NavLink className="menulink" exact to="/login">
+                <MenuItem active={true} icon={<BiLogOut />} onClick={this.LogOut}>
+                  <NavLink className="menulink" exact to='/login' >
                     Logout
                   </NavLink>
                 </MenuItem>
@@ -142,12 +105,17 @@ class Sidebar extends Component {
       </>
     );
   }
-}
-function mapStateToProps(state) {
-  const { user } = state.auth;
+};
+const mapStateToProps = state => {
+  const { isLoggedIn } = state.auth;
+  const { message } = state.message;
+
   return {
-    user,
-  };
+    userdata : state.organisationdetails,
+    isLoggedIn,
+    message,
+
+  }
 }
 
 export default connect(mapStateToProps)(Sidebar);

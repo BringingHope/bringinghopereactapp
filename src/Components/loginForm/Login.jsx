@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import FormikControl from '../../formUiComponents/FormikControl';
 import { Card } from "react-bootstrap";
 import { connect } from "react-redux";
-import { login } from "../../actions/auth";
+import { login } from '../../redux/authentication/authActions'; 
 import { Redirect } from 'react-router-dom';
 
 
@@ -96,7 +96,7 @@ class Login extends Component {
                     </button>
 
                     <div className="py-4">
-                      <a href="/password-reset">Forget Password?</a>
+                      <a href="/forgotPassword">Forget Password?</a>
                       <div>
                         Are you new here?{" "}
                         <a href="/registration">Register Now</a>

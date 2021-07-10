@@ -1,33 +1,32 @@
 import React, { Component } from 'react'
+import { connect } from "react-redux";
+import { changePasswordByOrganisationId } from "../../../redux";
+import { Redirect } from 'react-router-dom';
 import { Formik, Form } from 'formik';
 import * as Yup from 'yup';
-import FormikControl from '../../formUiComponents/FormikControl';
-import { register } from '../../redux/authentication/authActions';
-import { connect } from "react-redux";
+import FormikControl from '../../../formUiComponents/FormikControl';
 
-
-class RegistrationForm extends Component {
-
+class SecurityForm extends Component {
     constructor(props) {
         super(props)
 
         this.state = {
-            successful: false
+            successful: false,
+            organisationId: this.props.match.params.id,
         }
     }
     onSubmit = (values, submitProps) => {
-        let OrgRegistrationDetails = {
-            firstName: values.firstName,
-            organisationName: values.organisationName,
-            email: values.email,
-            password: values.password,
-            phoneNumber: values.phoneNumber,
-
+        let oldPasswordDetails = { 
+            oldPassword: values.oldPassword,
+            newPassword: values.newPassword,
+        };
+        let newPasswordDetails = { 
+            newPassword: values.newPassword,
         };
 
         this.props
             .dispatch(
-                register(OrgRegistrationDetails)
+                changePasswordByOrganisationId(this.state.organisationId, oldPasswordDetails, newPasswordDetails)
             )
             .then(() => {
                 this.setState({
@@ -43,41 +42,37 @@ class RegistrationForm extends Component {
         submitProps.setSubmitting(false)
     };
 
-
     render() {
-
+        const { isLoggedIn, passwordData } = this.props; 
+        if (!isLoggedIn) {
+          return <Redirect to="/login" />;
+        }
+    
         const INITIAL_FORM_STATE = {
-            firstName: '',
-            organisationName: '',
-            email: '',
-            password: '',
-            phoneNumber: '',
+
+            oldPassword: '',
+            newPassword: '',
             confirmPassword: ''
 
         };
 
         const FORM_VALIDATION = Yup.object({
-            firstName: Yup.string()
-                .required('Name is required'),
-            organisationName: Yup.string()
-                .required('Organisation Name is required'),
-            phoneNumber: Yup.string()
-                .required('Phone Number is required'),
-            email: Yup.string()
-                .email('Email is invalid')
-                .required('Email is required'),
-            password: Yup.string()
+            
+            oldPassword: Yup.string()
+                .required('Password is required'),
+            newPassword: Yup.string()
                 .min(8, 'Password must be at least 8 characters')
                 .required('Password is required'),
             confirmPassword: Yup.string()
-                .oneOf([Yup.ref('password'), null], 'Password must match')
+                .oneOf([Yup.ref('newPassword'), null], 'Password must match')
                 .required('Confirm password is required'),
         })
-
-        const { message } = this.props;
-
-        return (
-            <div className="container mt-3">
+        return passwordData.loading ? (
+            <h2>Loading</h2>
+          ) : passwordData.error ? (
+            <h2>{passwordData.error}</h2>
+          ) : (
+           <div className="container mt-3">
                 <div className="row">
                     <div className="col-md-5">
                         <Formik
@@ -93,25 +88,16 @@ class RegistrationForm extends Component {
                                     {this.state.error &&
                                         <p>Error</p>}
                                     <Form>
-                                        <FormikControl control='input' label="First Name" name="firstName" type="text" />
-                                        <FormikControl control='input' label="Organisation Name" name="organisationName" type="text" />
-                                        <FormikControl control='input' label="Phone Number" name="phoneNumber" type="number" />
-                                        <FormikControl control='input' label="Email" name="email" type="email" />
-                                        <FormikControl control='input' label="Password" name="password" type="password" />
+                                        <FormikControl control='input' label="Old Password" name="oldPassword" type="password" />
+                                        <FormikControl control='input' label="New Password" name="newPassword" type="password" />
                                         <FormikControl control='input' label="Confirm Password" name="confirmPassword" type="password" />
                                         <button className="btn btn-success m-1" disabled={!formik.isValid || formik.isSubmitting} type="submit">Register</button>
                                         <button className="btn btn-dark" type="reset">Reset</button>
-                                        <div className="py-4">
-                                            <div>
-                                                Already have an account?{" "}
-                                                <a href="/login">Login Now</a>
-                                            </div>
-                                        </div>
                                     </Form>
-                                    {message && (
+                                    {passwordData.message && (
                                         <div className="form-group">
                                             <div className={this.state.successful ? "alert alert-success" : "alert alert-danger"} role="alert">
-                                                {message}
+                                                {passwordData.message}
                                             </div>
                                         </div>
                                     )}
@@ -119,19 +105,17 @@ class RegistrationForm extends Component {
                             )}
                         </Formik>
                     </div>
-                    <div className="col-md-7 my-auto">
-                        <img className="img-fluid w-100" src="./img/RegistrationPage.jpg" alt="" />
-                    </div>
                 </div>
             </div>
         )
     }
 }
 function mapStateToProps(state) {
-    const { message } = state.message;
+    const { isLoggedIn } = state.auth;
     return {
-        message,
+        passwordData : state.changePassword,
+        isLoggedIn
     };
 }
 
-export default connect(mapStateToProps)(RegistrationForm);
+export default connect(mapStateToProps)(SecurityForm);

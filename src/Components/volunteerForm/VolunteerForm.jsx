@@ -38,6 +38,8 @@ export default class VolunteerForm extends Component {
   };
 
   render() {
+    console.log(this.props);
+
     const INITIAL_FORM_STATE = {
       firstName: "",
       lastName: "",

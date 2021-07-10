@@ -11,14 +11,13 @@ export default class DonorForm extends Component {
     super(props)
   
     this.state = {
-       id : ""
-      //  this.props.match.params.id
+       id : this.props.match.params.id
     }
   }
   
   onSubmit = (values,submitProps) => {
     console.log('id:', this.state.id);
-    console.log(this.props);
+    
     let donor = {
       organisationId : this.state.id,
       firstName: values.firstName,
@@ -45,6 +44,7 @@ export default class DonorForm extends Component {
   };
 
   render() {
+    console.log(this.props);
     const INITIAL_FORM_STATE = {
       firstName: "",
       lastName: "",

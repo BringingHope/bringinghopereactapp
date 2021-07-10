@@ -8,86 +8,23 @@ import FormikControl from "../../../formUiComponents/FormikControl";
 import OrganisationProfileService from "../../../services/OrganisationDashboardService";
 import MainOrgPic from "./MainOrgPic";
 import OrgLogo from "./OrgLogo";
-import { Redirect } from "react-router-dom";
+import { Redirect } from 'react-router-dom';
 import { connect } from "react-redux";
-import Sidebar from "../sidebar/Sidebar";
+import { getOrganisationProfileDetailsById } from "../../../redux";
+
 
 class OrganisationProfile extends Component {
-  constructor(props) {
-    super(props);
+ constructor(props) {
+     super(props)
 
-    this.state = {
-      id: "",
-
-      OrgProfileDetails: {
-        orgName: "",
-        AboutOrg: "",
-        //our work
-        education: "",
-        health: "",
-        covid: "",
-        //our reach
-        States: "",
-        project: "",
-        village: "",
-        //events nd updates
-        update1: "",
-        update2: "",
-        update3: "",
-        //awards and recognition
-        acreditation: "",
-        awards: "",
-        suppSpeech: "",
-
-        //volunteers
-        volunteer1: "",
-        volunteer2: "",
-        volunteer3: "",
-        email: "",
-        phone: "",
-        addressLine1: "",
-        addressLine2: "",
-        city: "",
-        state: "",
-        country: "",
-      },
-    };
-  }
-
+     this.state = {
+       organisationId: this.props.match.params.id,
+       orgName: this.props.match.params.organisationName,
+     };
+   }
   componentDidMount() {
-    OrganisationProfileService.getOrganisationProfileDetailsById(
-      this.state.id
-    ).then((res) => {
-      let orgDetails = res.data;
-      this.setState({
-        orgName: orgDetails.OrgProfileDetails.orgName,
-        AboutOrg: orgDetails.OrgProfileDetails.AboutOrg,
-        education: orgDetails.OrgProfileDetails.education,
-        health: orgDetails.OrgProfileDetails.health,
-        covid: orgDetails.OrgProfileDetails.covid,
 
-        States: orgDetails.OrgProfileDetails.States,
-        project: orgDetails.OrgProfileDetails.project,
-        village: orgDetails.OrgProfileDetails.village,
-        update1: orgDetails.OrgProfileDetails.update1,
-        update2: orgDetails.OrgProfileDetails.update2,
-        update3: orgDetails.OrgProfileDetails.update3,
-        acreditation: orgDetails.OrgProfileDetails.acredential,
-        awards: orgDetails.OrgProfileDetails.awards,
-        suppSpeech: orgDetails.OrgProfileDetails.suppSpeech,
-        volunteer1: orgDetails.OrgProfileDetails.volunteer1,
-        volunteer2: orgDetails.OrgProfileDetails.volunteer2,
-        volunteer3: orgDetails.OrgProfileDetails.volunteer3,
-
-        email: orgDetails.OrgProfileDetails.email,
-        phone: orgDetails.OrgProfileDetails.phone,
-        addressLine1: orgDetails.OrgProfileDetails.addressLine1,
-        addressLine2: orgDetails.OrgProfileDetails.addressLine2,
-        city: orgDetails.OrgProfileDetails.city,
-        state: orgDetails.OrgProfileDetails.state,
-        country: orgDetails.OrgProfileDetails.country,
-      });
-    });
+    this.props.dispatch(getOrganisationProfileDetailsById(this.state.organisationId));
   }
 
   onSubmit = (values, submitProps) => {
@@ -121,21 +58,24 @@ class OrganisationProfile extends Component {
     };
 
     OrganisationProfileService.updateOrganisationProfileDetailsById(
-      OrgProfileDetails
-    ).then((res) => {
+      OrgProfileDetails, this.state.organisationId).then((res) => {
+        submitProps.setSubmitting(false);
       console.log("Sent Successfully");
-    });
-    console.log(OrgProfileDetails);
-
-    submitProps.setSubmitting(false);
+    })
+    .catch( error => {
+      submitProps.setSubmitting(false);
+    })
   };
 
   render() {
-    const { user: currentUser } = this.props;
+    
+    const { isLoggedIn, profiledata } = this.props;
+    if (!isLoggedIn) {
+      return <Redirect to="/login" />;
+    }
 
-    // if (!currentUser) {
-    //   return <Redirect to="/login" />;
-    // }
+    const INITIAL_VALUES = profiledata;
+    console.log(profiledata);
 
     const FORM_VALIDATION = Yup.object().shape({
       orgName: Yup.string().required("Required"),
@@ -167,12 +107,10 @@ class OrganisationProfile extends Component {
       state: Yup.string(),
       country: Yup.string(),
     });
-
     return (
       <>
-        <Sidebar />
         <Formik
-          initialValues={{}}
+          initialValues={INITIAL_VALUES}
           validationSchema={FORM_VALIDATION}
           onSubmit={this.onSubmit}
           enableReinitialize
@@ -505,9 +443,10 @@ class OrganisationProfile extends Component {
   }
 }
 function mapStateToProps(state) {
-  const { user } = state.auth;
+  const { isLoggedIn } = state.auth;
   return {
-    user,
+    profiledata : state.organisationdetails,
+    isLoggedIn,
   };
 }
 

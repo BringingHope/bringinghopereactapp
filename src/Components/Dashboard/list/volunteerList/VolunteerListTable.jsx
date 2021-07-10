@@ -1,37 +1,30 @@
-import React, { useMemo, useState, useEffect } from "react";
-import {
-  useTable,
-  useFilters,
-  useGlobalFilter,
-  usePagination,
-  useSortBy,
-} from "react-table";
-import { GROUPED_COLUMNS } from "./Columns";
-import "../tableComponents/table.css";
-import { GlobalFilter } from "../tableComponents/GlobalFilter";
-import { ColumnFilter } from "../tableComponents/ColumnFilter";
-import OrganisationDashboardService from "../../../../services/OrganisationDashboardService";
+import React, { useMemo, useState, useEffect } from 'react'
+import { useTable, useFilters, useGlobalFilter, usePagination, useSortBy } from 'react-table'
+import { GROUPED_COLUMNS } from './Columns'
+import '../tableComponents/table.css'
+import { GlobalFilter } from '../tableComponents/GlobalFilter'
+import { ColumnFilter } from '../tableComponents/ColumnFilter'
+import { getVolunteersByOrganisationId } from '../../../../redux';
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { Container } from "@material-ui/core";
 
 export const VolunteerListTable = (props) => {
-  // const {match}= props;
-  // let{organisationId}= match.params;
-  const [organisationId, setorganisationId] = useState("1");
 
-  const [list, setList] = useState([]);
+    const { isLoggedIn, List } = this.props;
+    // if (!isLoggedIn) {
+    //   return <Redirect to="/login" />;
+    // }
+    const {match}= props;
+    let{organisationId}= match.params;
 
-  useEffect(() => {
-    OrganisationDashboardService.getVolunteersByOrganisationId(
-      organisationId
-    ).then((res) => {
-      setList(res.data);
-    });
-  }, [organisationId]);
+    useEffect(() => {
+        this.props.dispatch(getVolunteersByOrganisationId(organisationId));
+    }, [organisationId])
 
-  const columns = useMemo(() => GROUPED_COLUMNS, []);
-  const data = useMemo(() => list, [list]);
+
+    const columns = useMemo(() => GROUPED_COLUMNS, [])
+    const data = useMemo(() => List, [List])
 
   const defaultColumn = React.useMemo(
     () => ({
@@ -163,11 +156,16 @@ export const VolunteerListTable = (props) => {
     </>
   );
 };
-function mapStateToProps(state) {
-  const { user } = state.auth;
-  return {
-    user,
-  };
-}
+const mapStateToProps = state => {
+    const { isLoggedIn } = state.auth;
+    const { message } = state.message;
+
+    return {
+      List : state.volunteerList,
+      isLoggedIn,
+      message,
+
+    }
+  }
 
 export default connect(mapStateToProps)(VolunteerListTable);
