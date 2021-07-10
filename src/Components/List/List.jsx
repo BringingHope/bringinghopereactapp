@@ -13,14 +13,14 @@ class List extends Component {
     this.state = {
       organisations: [],
     };
-  }
+  
   this.viewOrganisation = this.viewOrganisation.bind(this);
   this.volunteer = this.volunteer.bind(this);
   this.donate = this.donate.bind(this);
 
 }
 
-componentDidMount(){
+componentDidMount() {
   OrganisationListService.getOrganisations().then((res)=>{
     this.setState({organisations: res.data})
   });
