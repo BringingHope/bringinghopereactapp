@@ -4,13 +4,11 @@ import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import { Card, CardText, Container, Row } from "reactstrap";
 import { Col } from "reactstrap";
-import {Col, Card, CardText, CardBody, Container, Row } from "reactstrap";
 import "./Events.css";
 import FormikControl from "../../../formUiComponents/FormikControl";
 import OrganisationProfileService from "../../../services/OrganisationDashboardService";
 import ImageUpload from "../Profile/ImageUpload";
-
-
+import { CardBody } from "reactstrap";
 
 export default class Events extends Component {
   constructor(props) {
@@ -20,10 +18,11 @@ export default class Events extends Component {
       id: "",
 
       OrgProfileDetails: {
-        email: "",
-        phone: "",
-        addressLine1: "",
-        addressLine2: "",
+        eventname: "",
+        AboutEvent: "",
+        startDate: null,
+        endDate: null,
+
         //events nd updates
         update1: "",
         update2: "",
@@ -32,8 +31,10 @@ export default class Events extends Component {
         volunteer1: "",
         volunteer2: "",
         volunteer3: "",
-        endDate: null,
-        startDate: null,
+        phone: "",
+        email: "",
+        addressLine1: "",
+        addressLine2: "",
       },
     };
   }
@@ -44,36 +45,39 @@ export default class Events extends Component {
     ).then((res) => {
       let orgDetails = res.data;
       this.setState({
-        email: orgDetails.OrgProfileDetails.email,
-        phone: orgDetails.OrgProfileDetails.phone,
-        addressLine1: orgDetails.OrgProfileDetails.addressLine1,
-        addressLine2: orgDetails.OrgProfileDetails.addressLine2,
+        eventname: orgDetails.OrgProfileDetails.eventname,
+        startDate: orgDetails.OrgProfileDetails.startDate,
+        endDate: orgDetails.OrgProfileDetails.endDate,
         update1: orgDetails.OrgProfileDetails.update1,
         update2: orgDetails.OrgProfileDetails.update2,
         update3: orgDetails.OrgProfileDetails.update3,
         volunteer1: orgDetails.OrgProfileDetails.volunteer1,
         volunteer2: orgDetails.OrgProfileDetails.volunteer2,
         volunteer3: orgDetails.OrgProfileDetails.volunteer3,
-        endDate: orgDetails.OrgProfileDetails.endDate,
-        startDate: orgDetails.OrgProfileDetails.startDate,
+        phone: orgDetails.OrgProfileDetails.phone,
+        email: orgDetails.OrgProfileDetails.email,
+        addressLine1: orgDetails.OrgProfileDetails.addressLine1,
+        addressLine2: orgDetails.OrgProfileDetails.addressLine2,
       });
     });
   }
 
   onSubmit = (values, submitProps) => {
     let OrgProfileDetails = {
-      email: values.email,
-      phone: values.phone,
-      addressLine1: values.addressLine1,
-      addressLine2: values.addressLine2,
-      endDate: values.endDate,
+      eventname: values.eventname,
+      AboutEvent: values.AboutEvent,
       startDate: values.startDate,
-      volunteer1: values.volunteer1,
-      volunteer2: values.volunteer2,
-      volunteer3: values.volunteer3,
+      endDate: values.endDate,
       update1: values.update1,
       update2: values.update2,
       update3: values.update3,
+      volunteer1: values.volunteer1,
+      volunteer2: values.volunteer2,
+      volunteer3: values.volunteer3,
+      phone: values.phone,
+      email: values.email,
+      addressLine1: values.addressLine1,
+      addressLine2: values.addressLine2,
     };
 
     OrganisationProfileService.updateOrganisationProfileDetailsById(
@@ -88,21 +92,23 @@ export default class Events extends Component {
 
   render() {
     const FORM_VALIDATION = Yup.object().shape({
-      email: Yup.string().email("Invalid email.").required("Required"),
+      eventname: Yup.string(),
+      AboutEvent: Yup.string(),
+      startDate: Yup.date().required("Required").nullable(),
+      endDate: Yup.date().required("Required").nullable(),
+      update1: Yup.string(),
+      update2: Yup.string(),
+      update3: Yup.string(),
+      volunteer1: Yup.string(),
+      volunteer2: Yup.string(),
+      volunteer3: Yup.string(),
       phone: Yup.number()
         .integer()
         .typeError("Please enter a valid phone number")
         .required("Required"),
+      email: Yup.string().email("Invalid email.").required("Required"),
       addressLine1: Yup.string().required("Required"),
       addressLine2: Yup.string(),
-      startDate: Yup.date().required("Required").nullable(),
-      endDate: Yup.date().required("Required").nullable(),
-      volunteer1: Yup.string(),
-      volunteer2: Yup.string(),
-      volunteer3: Yup.string(),
-      update1: Yup.string(),
-      update2: Yup.string(),
-      update3: Yup.string(),
     });
 
     return (
@@ -126,9 +132,23 @@ export default class Events extends Component {
                     rows="3"
                     control="textarea"
                     label=""
-                    name="update3"
+                    name="eventname"
                     type="work"
                   />
+                  <Card body className="Reach">
+                    ABOUT EVENT
+                  </Card>
+                  <Card className="text-center">
+                    <CardBody className="orgacre">
+                      <FormikControl
+                        rows="15"
+                        control="textarea"
+                        label=""
+                        name="AboutEvent"
+                        type="work"
+                      />
+                    </CardBody>
+                  </Card>
                   <Card body className="Reach">
                     Start Date
                   </Card>

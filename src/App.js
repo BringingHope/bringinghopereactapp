@@ -10,8 +10,8 @@ import PhoneOtpVerification from "./Components/phoneNumberVerification/PhoneOtpV
 import OrganisationProfile from "./Components/Dashboard/Profile/OrganisationProfile";
 import Sidebar from "./Components/Dashboard/sidebar/Sidebar";
 import Events from "./Components/Dashboard/Events/Events"
-import {DonorListTable} from "./Components/Dashboard/list/donorList/DonorListTable";
-import {VolunteerListTable} from "./Components/Dashboard/list/volunteerList/VolunteerListTable";
+import { DonorListTable } from "./Components/Dashboard/list/donorList/DonorListTable";
+import { VolunteerListTable } from "./Components/Dashboard/list/volunteerList/VolunteerListTable";
 import { history } from './helpers/history';
 
 function App() {
@@ -28,18 +28,16 @@ function App() {
           <Route path="/blog" exact component={() => <BlogHome />} />
           <Route path="/blog/bloghome" exact component={() => <Blog />} />
           <Route path="/post/:postId" exact component={Post1} />
-          <Route path="/dash" exact component={() => <DashBoard1 />} />
-          <Route path="/dash/profile" exact component={() => <Profile />} />
-          <Route path="/dash/events" exact component={() => <Events />} />
-          {/* <Route path="/login" exact component={() => <Login />} /> */}
-          <Route path="/dash" exact component={() => <DashBoard1 />} />
-          <Route path="/dash/profile" exact component={() => <Profile />} />
-          <Route path="/post/:postId" component={Post1} />
+
           <Route path="/dashboard" exact component={() => <Sidebar />} />
-          <Route path="/dashboard/profile/:id/:organisationName" exact component={() => <OrganisationProfile />} />
+          <Route path="/dashboard/profile" exact component={() => <OrganisationProfile />} />
+          <Route path="/dashboard/events" exact component={() => <Events />} />
+          <Route path="/dashboard/donorlist" exact component={() => < DonorListTable />} />
+          <Route path="/dashboard/volunteerlist" exact component={() => <VolunteerListTable />} />
+          {/* <Route path="/dashboard/profile/:id/:organisationName" exact component={() => <OrganisationProfile />} />
           <Route path="/dashboard/events/:id/:organisationName" exact component={() => <Events />} />
-          <Route path="/dashboard/donorlist/:id/:organisationName" exact component={() => < DonorListTable/>} />
-          <Route path="/dashboard/volunteerlist/:id/:organisationName" exact component={() => <VolunteerListTable />} />
+          <Route path="/dashboard/donorlist/:id/:organisationName" exact component={() => < DonorListTable />} />
+          <Route path="/dashboard/volunteerlist/:id/:organisationName" exact component={() => <VolunteerListTable />} /> */}
           <Route path="/registration" exact component={() => <RegistrationForm />} />
           <Route path="/donate/:organisationName/:id" exact component={() => <DonorForm />} />
           <Route path="/volunteer/:organisationName/:id" exact component={() => <VolunteerForm />} />

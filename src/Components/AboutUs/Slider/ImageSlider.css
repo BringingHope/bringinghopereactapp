@@ -15,7 +15,7 @@
   position: relative;
 }
 
-.slicercard .card-image {
+.slicercard .cards-image {
   position: absolute;
   top: 0;
   left: 0;
@@ -37,7 +37,7 @@
   opacity: 0.5;
   transition: 0.5s;
 }
-.card-image:hover {
+.cards-image:hover {
   transform: translateY(-100px);
 }
 

@@ -18,7 +18,7 @@ export default class ImageSlider extends Component {
       <Slider {...settings}>
         <div className="card-wrapper">
           <Card className="slidercard">
-            <div className="card-image">
+            <div className="cards-image">
               <img
                 className="slidim"
                 src="https://cdn.pixabay.com/photo/2017/10/13/12/29/hands-2847508__340.jpg"
@@ -34,7 +34,7 @@ export default class ImageSlider extends Component {
         </div>
         <div className="card-wrapper">
           <Card className="slidercard">
-            <div className="card-image">
+            <div className="cards-image">
               <img
                 className="slidim"
                 src="https://cdn.pixabay.com/photo/2017/05/28/18/59/group-2351896__340.png"
@@ -50,7 +50,7 @@ export default class ImageSlider extends Component {
         </div>
         <div className="card-wrapper">
           <Card className="slidercard">
-            <div className="card-image">
+            <div className="cards-image">
               <img
                 className="slidim"
                 src="https://cdn.pixabay.com/photo/2017/09/16/01/41/poor-2754335__340.jpg"
@@ -66,7 +66,7 @@ export default class ImageSlider extends Component {
         </div>
         <div className="card-wrapper">
           <Card className="slidercard">
-            <div className="card-image">
+            <div className="cards-image">
               <img
                 className="slidim"
                 src="https://cdn.pixabay.com/photo/2017/07/06/14/44/help-2478193__340.jpg"

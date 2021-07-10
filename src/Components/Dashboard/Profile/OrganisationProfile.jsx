@@ -2,26 +2,47 @@ import React, { Component } from "react";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
 import "./Profile.css";
-import { Col,Card, CardText, CardBody, Container, Row } from "reactstrap";
+import { Col, Card, CardText, CardBody, Container, Row } from "reactstrap";
 import ImageUpload from "./ImageUpload";
 import FormikControl from "../../../formUiComponents/FormikControl";
 import OrganisationProfileService from "../../../services/OrganisationDashboardService";
 import MainOrgPic from "./MainOrgPic";
 import OrgLogo from "./OrgLogo";
-import { Redirect } from 'react-router-dom';
+import { Redirect } from "react-router-dom";
 import { connect } from "react-redux";
 import Sidebar from "../sidebar/Sidebar";
 
 class OrganisationProfile extends Component {
-
   constructor(props) {
-    super(props)
+    super(props);
 
     this.state = {
       id: "",
 
       OrgProfileDetails: {
         orgName: "",
+        AboutOrg: "",
+        //our work
+        education: "",
+        health: "",
+        covid: "",
+        //our reach
+        States: "",
+        project: "",
+        village: "",
+        //events nd updates
+        update1: "",
+        update2: "",
+        update3: "",
+        //awards and recognition
+        acreditation: "",
+        awards: "",
+        suppSpeech: "",
+
+        //volunteers
+        volunteer1: "",
+        volunteer2: "",
+        volunteer3: "",
         email: "",
         phone: "",
         addressLine1: "",
@@ -29,27 +50,6 @@ class OrganisationProfile extends Component {
         city: "",
         state: "",
         country: "",
-        AboutOrg: "",
-        //our reach
-        States: "",
-        project: "",
-        village: "",
-        //our work
-        education: "",
-        health: "",
-        covid: "",
-        //events nd updates
-        update1: "",
-        update2: "",
-        update3: "",
-        //volunteers
-        volunteer1: "",
-        volunteer2: "",
-        volunteer3: "",
-        //awards and recognition
-        acreditation: "",
-        awards: "",
-        suppSpeech: "",
       },
     };
   }
@@ -61,6 +61,24 @@ class OrganisationProfile extends Component {
       let orgDetails = res.data;
       this.setState({
         orgName: orgDetails.OrgProfileDetails.orgName,
+        AboutOrg: orgDetails.OrgProfileDetails.AboutOrg,
+        education: orgDetails.OrgProfileDetails.education,
+        health: orgDetails.OrgProfileDetails.health,
+        covid: orgDetails.OrgProfileDetails.covid,
+
+        States: orgDetails.OrgProfileDetails.States,
+        project: orgDetails.OrgProfileDetails.project,
+        village: orgDetails.OrgProfileDetails.village,
+        update1: orgDetails.OrgProfileDetails.update1,
+        update2: orgDetails.OrgProfileDetails.update2,
+        update3: orgDetails.OrgProfileDetails.update3,
+        acreditation: orgDetails.OrgProfileDetails.acredential,
+        awards: orgDetails.OrgProfileDetails.awards,
+        suppSpeech: orgDetails.OrgProfileDetails.suppSpeech,
+        volunteer1: orgDetails.OrgProfileDetails.volunteer1,
+        volunteer2: orgDetails.OrgProfileDetails.volunteer2,
+        volunteer3: orgDetails.OrgProfileDetails.volunteer3,
+
         email: orgDetails.OrgProfileDetails.email,
         phone: orgDetails.OrgProfileDetails.phone,
         addressLine1: orgDetails.OrgProfileDetails.addressLine1,
@@ -68,22 +86,6 @@ class OrganisationProfile extends Component {
         city: orgDetails.OrgProfileDetails.city,
         state: orgDetails.OrgProfileDetails.state,
         country: orgDetails.OrgProfileDetails.country,
-        AboutOrg: orgDetails.OrgProfileDetails.AboutOrg,
-        States: orgDetails.OrgProfileDetails.States,
-        project: orgDetails.OrgProfileDetails.project,
-        village: orgDetails.OrgProfileDetails.village,
-        education: orgDetails.OrgProfileDetails.education,
-        health: orgDetails.OrgProfileDetails.health,
-        covid: orgDetails.OrgProfileDetails.covid,
-        acreditation: orgDetails.OrgProfileDetails.acredential,
-        awards: orgDetails.OrgProfileDetails.awards,
-        suppSpeech: orgDetails.OrgProfileDetails.suppSpeech,
-        volunteer1: orgDetails.OrgProfileDetails.volunteer1,
-        volunteer2: orgDetails.OrgProfileDetails.volunteer2,
-        volunteer3: orgDetails.OrgProfileDetails.volunteer3,
-        update1: orgDetails.OrgProfileDetails.update1,
-        update2: orgDetails.OrgProfileDetails.update2,
-        update3: orgDetails.OrgProfileDetails.update3,
       });
     });
   }
@@ -91,29 +93,31 @@ class OrganisationProfile extends Component {
   onSubmit = (values, submitProps) => {
     let OrgProfileDetails = {
       orgName: values.orgName,
-      email: values.email,
+      AboutOrg: values.AboutOrg,
+      education: values.education,
+      health: values.health,
+      covid: values.covid,
+      States: values.States,
+      project: values.project,
+      village: values.village,
+      update1: values.update1,
+      update2: values.update2,
+      update3: values.update3,
+      acreditation: values.acredential,
+      awards: values.awards,
+      suppSpeech: values.suppSpeech,
+
+      volunteer1: values.volunteer1,
+      volunteer2: values.volunteer2,
+      volunteer3: values.volunteer3,
+
       phone: values.phone,
+      email: values.email,
       addressLine1: values.addressLine1,
       addressLine2: values.addressLine2,
       city: values.city,
       state: values.state,
       country: values.country,
-      AboutOrg: values.AboutOrg,
-      States: values.States,
-      project: values.project,
-      village: values.village,
-      education: values.education,
-      health: values.health,
-      covid: values.covid,
-      acreditation: values.acredential,
-      awards: values.awards,
-      suppSpeech: values.suppSpeech,
-      volunteer1: values.volunteer1,
-      volunteer2: values.volunteer2,
-      volunteer3: values.volunteer3,
-      update1: values.update1,
-      update2: values.update2,
-      update3: values.update3,
     };
 
     OrganisationProfileService.updateOrganisationProfileDetailsById(
@@ -127,35 +131,41 @@ class OrganisationProfile extends Component {
   };
 
   render() {
-    
     const { user: currentUser } = this.props;
 
-    if (!currentUser) {
-      return <Redirect to="/login" />;
-    }
+    // if (!currentUser) {
+    //   return <Redirect to="/login" />;
+    // }
 
     const FORM_VALIDATION = Yup.object().shape({
       orgName: Yup.string().required("Required"),
-      email: Yup.string().email("Invalid email.").required("Required"),
-      phone: Yup.number()
-        .integer()
-        .typeError("Please enter a valid phone number")
-        .required("Required"),
-      addressLine1: Yup.string().required("Required"),
-      addressLine2: Yup.string(),
       AboutOrg: Yup.string(),
+      education: Yup.string(),
+      health: Yup.string(),
+      covid: Yup.string(),
       States: Yup.string(),
       project: Yup.string(),
       village: Yup.string(),
+      update1: Yup.string(),
+      update2: Yup.string(),
+      update3: Yup.string(),
       acreditation: Yup.string(),
       awards: Yup.string(),
       suppSpeech: Yup.string(),
       volunteer1: Yup.string(),
       volunteer2: Yup.string(),
       volunteer3: Yup.string(),
-      update1: Yup.string(),
-      update2: Yup.string(),
-      update3: Yup.string(),
+
+      phone: Yup.number()
+        .integer()
+        .typeError("Please enter a valid phone number")
+        .required("Required"),
+      email: Yup.string().email("Invalid email.").required("Required"),
+      addressLine1: Yup.string().required("Required"),
+      addressLine2: Yup.string(),
+      city: Yup.string(),
+      state: Yup.string(),
+      country: Yup.string(),
     });
 
     return (
@@ -446,6 +456,24 @@ class OrganisationProfile extends Component {
                             control="input"
                             label="Address Line 2"
                             name="addressLine2"
+                            type="text"
+                          />
+                          <FormikControl
+                            control="input"
+                            label="City"
+                            name="city"
+                            type="text"
+                          />
+                          <FormikControl
+                            control="input"
+                            label="State"
+                            name="state"
+                            type="text"
+                          />
+                          <FormikControl
+                            control="input"
+                            label="Country"
+                            name="country"
                             type="text"
                           />
                         </CardText>

@@ -1,72 +1,96 @@
 import React, { Component } from "react";
-import {withRouter} from "react-router-dom";
-
+import { withRouter } from "react-router-dom";
+import ImageUpload from "../Dashboard/Profile/ImageUpload";
 import OrganisationListService from "../../services/OrganisationListService";
-
+import { Container } from "@material-ui/core";
+import "./List.css";
+import { Row, Card } from "react-bootstrap";
+import { CardText } from "reactstrap";
 class List extends Component {
+  constructor(props) {
+    super(props);
 
-constructor(props) {
-  super(props)
-
-  this.state = {
-     organisations:[]
+    this.state = {
+      organisations: [],
+    };
   }
-}
-componentDidMount(){
-  OrganisationListService.getOrganisations().then((res)=>{
-    this.setState({organisations: res.data})
-  });
-}
+  componentDidMount() {
+    OrganisationListService.getOrganisations().then((res) => {
+      this.setState({ organisations: res.data });
+    });
+  }
 
-viewOrganisation(id, organisationName){
-  this.props.history.push(`/view/${organisationName}/${id}`)
-}
-volunteer(id, organisationName){
-  
-  this.props.history.push(`/volunteer/${organisationName}/${id}`)
-}
-donate(id, organisationName){
-  this.props.history.push(`/donate/${organisationName}/${id}`)
-}
+  viewOrganisation(id, organisationName) {
+    this.props.history.push(`/view/${organisationName}/${id}`);
+  }
+  volunteer(id, organisationName) {
+    this.props.history.push(`/volunteer/${organisationName}/${id}`);
+  }
+  donate(id, organisationName) {
+    this.props.history.push(`/donate/${organisationName}/${id}`);
+  }
 
-render() {
+  render() {
     return (
-      <div>
-      <h2 className="text-center">Organisation List</h2>
+      <>
+        <Container>
+          <Container>
+            <div body className="Reach">
+              <h1>Organisation List</h1>
+            </div>
 
+            {this.state.organisations.map((organisations) => (
+              <Card key={organisations.id}>
+                <img
+                  src="./img/woman-5716038_1920.jpg"
+                  className="card-img-top"
+                />
+                <div className="listbuttons">
+                  <CardText className="listTitle">
+                    {organisations.organisationName}
+                  </CardText>
 
-      <div className="row">
-          <table className="table table-striped table-bordered">
-              <thead>
-                  <tr>
-                      <th>Organisation Name</th>
-                      <th>Actions</th>
-                  </tr>
-              </thead>
-              <tbody>
-                  {this.state.organisations.map(
-                      organisations =>
-                          <tr key={organisations.id}>
-                              <td>{organisations.organisationName}</td>
-                              <td>
-                                  <button onClick ={()=> this.donate(organisations.id, organisations.organisationName)} className="btn btn-info m-2">
-                                      Donate
-                                  </button>
-                                  <button onClick ={()=> this.volunteer(organisations.id, organisations.organisationName)} className="btn btn-danger m-2">
-                                      Volunteer
-                                  </button>
-                                  <button onClick ={()=> this.viewOrganisation(organisations.id, organisations.organisationName)} className="btn btn-success m-2">
-                                      view
-                                  </button>
-                              </td>
-                          </tr>
-                  )
-                  }
-              </tbody>
-          </table>
-      </div>
-  </div>
+                  <button
+                    onClick={() =>
+                      this.donate(
+                        organisations.id,
+                        organisations.organisationName
+                      )
+                    }
+                    className="btn btn-info m-2"
+                  >
+                    Donate
+                  </button>
+
+                  <button
+                    onClick={() =>
+                      this.volunteer(
+                        organisations.id,
+                        organisations.organisationName
+                      )
+                    }
+                    className="btn btn-danger m-2"
+                  >
+                    Volunteer
+                  </button>
+                  <button
+                    onClick={() =>
+                      this.viewOrganisation(
+                        organisations.id,
+                        organisations.organisationName
+                      )
+                    }
+                    className="btn btn-success m-2"
+                  >
+                    view
+                  </button>
+                </div>
+              </Card>
+            ))}
+          </Container>
+        </Container>
+      </>
     );
   }
 }
-export default  withRouter(List)
+export default withRouter(List);
