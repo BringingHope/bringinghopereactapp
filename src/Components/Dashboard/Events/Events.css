@@ -1,1 +1,190 @@
+.orgname {
+  text-align: center;
+  align-items: center;
+}
+.orgname1 {
+  text-align: center;
+  align-items: center;
+}
+.orgdiv {
+  margin-top: -6%;
+}
+.orgbtn1 {
+  position: relative;
+  display: inline-block;
 
+  font-weight: bold;
+  text-shadow: 0 1px 1px 0px #000;
+  background-image: linear-gradient(45deg, red, orange);
+  border: 2px solid black;
+  padding: 3px 7px;
+  cursor: pointer;
+  border-radius: 20px;
+  margin-right: 55%;
+}
+.orgname2 {
+  text-align: center;
+  align-items: center;
+}
+
+.progress-bar {
+  height: 5px;
+  background: var(--primary);
+  margin-top: 20px;
+}
+.buttonorg {
+  font-weight: bold;
+  text-shadow: 0 1px 1px 0px #000;
+  background-image: linear-gradient(45deg, red, orange);
+  border: 2px solid black;
+  padding: 6px 12px;
+  cursor: pointer;
+  border-radius: 20px;
+  box-shadow: 0px 1px 2px 1px black;
+}
+
+.worktext {
+  align-items: center;
+}
+textarea[type="work"] {
+  display: block;
+  width: 100%;
+  padding: 12px 12px;
+  padding-left: 30px;
+  font-size: 14px;
+  line-height: 1;
+  align-items: center;
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.orglogoo1 {
+  margin-top: -25%;
+  margin-bottom: 0px;
+  margin-left: 50%;
+}
+.orglogoo {
+  margin-top: -8%;
+  margin-left: 13%;
+}
+.covorg {
+  margin-bottom: -5%;
+  margin-right: -1%;
+  z-index: 2;
+}
+.covbtn {
+  position: relative;
+  display: inline-block;
+  font-weight: bold;
+  text-shadow: 0 1px 1px 0px #000;
+  background-image: linear-gradient(45deg, red, orange);
+  border: 2px solid black;
+  padding: 3px 7px;
+  cursor: pointer;
+  border-radius: 20px;
+}
+.logongo {
+  width: 120px;
+  height: 120px;
+  border-radius: 100%;
+  border: 2px solid white;
+  align-items: flex-start;
+  margin-right: 80%;
+  margin-top: -12%;
+  cursor: pointer;
+}
+.logobutton {
+  align-items: flex-end;
+}
+/*Reach*/
+.Reach {
+  margin-top: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+  align-items: center;
+  color: #fff;
+  background-color: black;
+}
+.Reach1 {
+  margin-top: -7%;
+
+  margin-bottom: 20px;
+  text-align: center;
+  align-items: center;
+  color: #000;
+  /* background-color: black; */
+}
+input[type="file"] {
+  font-size: 9px;
+}
+input[type="reach"] {
+  display: block;
+
+  padding: 12px 12px;
+  font-size: 14px;
+  line-height: 1;
+
+  background-image: none;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.containero {
+  margin-top: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.containero .cardo {
+  position: relative;
+  min-width: 300px;
+  height: 200px;
+}
+.containero .cardo .boxo {
+  position: absolute;
+  border: 3px solid black;
+
+  border-radius: 13px;
+  box-shadow: 0 50px 50px rgba(0, 0, 0, 0.5);
+  transition: 0.5s;
+}
+
+.containero .cardo .boxo .contento {
+  text-align: center;
+  text-align: justify;
+}
+
+.orgabout {
+  padding-left: 5rem;
+  border-radius: 10px;
+  margin-bottom: 40px;
+  box-shadow: 0 20px 30px #77c720;
+  align-items: center;
+}
+.card-org {
+  border-radius: 10px;
+  margin-bottom: 40px;
+  box-shadow: 0 20px 30px #77c720;
+}
+
+.accredential label {
+  text-align: center;
+}
+
+.orgbtn {
+  position: relative;
+  display: inline-block;
+  margin-bottom: 12px;
+  padding: 8px 20px;
+  background: orange;
+  margin-top: 15px;
+  border-radius: 20px;
+  text-decoration: none;
+  font-weight: 400;
+  color: white;
+}
+.orgbtn:hover {
+  background-color: #77c720;
+}

@@ -18,6 +18,7 @@ import ForgotPasswordForm from "./Components/forgotPassword/ForgotPasswordForm";
 import ResetPasswordForm from "./Components/forgotPassword/ResetPasswordForm";
 import OrganisationEvents from "./Components/Dashboard/Events/OrganisationEvents";
 
+import ListSearch from "./Components/List/ListSearch";
 
 function App() {
   // const { tokendata } = this.props;
@@ -46,6 +47,7 @@ function App() {
             <Route exact path="/about" component={() => <AboutUs />} />
             <Route exact path="/contact" component={() => <Contact />} />
             <Route exact path="/list" component={() => <List />} />
+            <Route exact path="/list/search" render={(props) => <ListSearch  {...props} />} />
             <Route exact path="/blog" component={() => <BlogHome />} />
             <Route exact path="/blog/bloghome" component={() => <Blog />} />
             <Route exact path="/post/:postId" component={Post1} />
@@ -62,7 +64,7 @@ function App() {
 function mapStateToProps(state) {
 
   return {
-    tokendata : state.forgotPassword,
+    tokendata: state.forgotPassword,
   };
 }
 

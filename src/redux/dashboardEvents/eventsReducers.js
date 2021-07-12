@@ -11,7 +11,7 @@
 // };
 
 // export default function details (state = initialState, action) {
-    
+
 //     const {type, payload} = action;
 
 //     switch(type){
