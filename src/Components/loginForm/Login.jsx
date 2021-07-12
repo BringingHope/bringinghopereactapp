@@ -4,7 +4,7 @@ import * as Yup from 'yup'
 import FormikControl from '../../formUiComponents/FormikControl';
 import { Card } from "react-bootstrap";
 import { connect } from "react-redux";
-import { login } from '../../redux/authentication/authActions'; 
+import { login } from '../../redux/authentication/authActions';
 import { Redirect } from 'react-router-dom';
 
 
@@ -62,14 +62,16 @@ class Login extends Component {
             >
               {(formik) => (
                 <Card className="regform">
-                  <h1 className="regheading">Login</h1>
-                  {message && (
+                  <div>
+                    <h1 className="regheading">Login</h1>
+                  </div>
+                  {/* {message && (
                     <div className="form-group">
                       <div className="alert alert-danger" role="alert">
                         {message}
                       </div>
                     </div>
-                  )}
+                  )} */}
                   <Form>
                     <FormikControl
                       control="input"
@@ -103,7 +105,7 @@ class Login extends Component {
                       </div>
                     </div>
                   </Form>
-                  
+
                 </Card>
               )}
             </Formik>

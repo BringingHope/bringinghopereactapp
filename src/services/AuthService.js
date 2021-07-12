@@ -7,11 +7,9 @@ class AuthService {
     return axios
       .post(API_URL + "login", LoginDetails)
       .then((response) => {
-        console.log(response.data)
         if (response.data.token) {
           localStorage.setItem("user", JSON.stringify(response.data));
-          console.log("successful")
-        }
+       }
 
         return response.data;
       });
@@ -30,6 +28,8 @@ class AuthService {
   resetPassword(newPassword) {
     return axios.put(API_URL + "resetPassword", newPassword);
   }
+
+
 }
 
 

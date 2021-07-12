@@ -21,7 +21,6 @@ import OrganisationEvents from "./Components/Dashboard/Events/OrganisationEvents
 import ListSearch from "./Components/List/ListSearch";
 
 function App() {
-  // const { tokendata } = this.props;
 
   return (
 
@@ -40,7 +39,7 @@ function App() {
           <Route exact path="/volunteer/:organisationName/:id" render={(props) => <VolunteerForm {...props} />} />
           <Route exact path="/login" component={() => <Login />} />
           <Route exact path="/forgotPassword" component={() => <ForgotPasswordForm />} />
-          {/* <Route exact path={`resetPassword/confirmToken/${tokendata.token}`} component={() => <ResetPasswordForm />} /> */}
+          <Route exact path="/resetPassword/confirmToken/:token" component={() => <ResetPasswordForm />} />
           <div>
             <Navigation />
             <Route exact path="/" component={() => <Home />} />
@@ -61,11 +60,5 @@ function App() {
   );
 }
 
-function mapStateToProps(state) {
 
-  return {
-    tokendata: state.forgotPassword,
-  };
-}
-
-export default connect(mapStateToProps)(App);
+export default App

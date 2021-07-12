@@ -47,12 +47,12 @@ import {
   
   export const login = (LoginDetails) => (dispatch) => {
     return AuthService.login(LoginDetails).then(
-      (data) => {
+      (response) => {
         dispatch({
           type: LOGIN_SUCCESS,
-          payload: { user: data },
+          payload: { user: response.data },
         });
-  
+        
         return Promise.resolve();
       },
       (error) => {

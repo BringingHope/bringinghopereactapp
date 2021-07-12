@@ -1,35 +1,35 @@
 import {
-    GET_VOLUNTEERS_FAILURE,
-    GET_VOLUNTEERS_REQUEST,
-    GET_VOLUNTEERS_SUCCESS
+    GET_ORGANISATION_LIST_REQUEST,
+    GET_ORGANISATION_LIST_SUCCESS,
+    GET_ORGANISATION_LIST_FAILURE
 } from './types'
 
 const initialState = {
     loading: false,
-    volunteers: [],
+    organisationsList: [],
     error: ''
 };
 
-export default function volunteerTable (state = initialState, action) {
+export default function list (state = initialState, action) {
     
     const {type, payload} = action;
 
     switch(type){
-        case GET_VOLUNTEERS_REQUEST:
+        case GET_ORGANISATION_LIST_REQUEST:
             return {
                 ...state,
                 loading: true
             };
-        case GET_VOLUNTEERS_SUCCESS:
+        case GET_ORGANISATION_LIST_SUCCESS:
             return {
                 loading: false,
-                volunteers: payload,
+                organisationsList: payload,
                 error: ''
             };
-        case GET_VOLUNTEERS_FAILURE:
+        case GET_ORGANISATION_LIST_FAILURE:
             return {
                 loading: false,
-                volunteers: [],
+                organisationsList: [],
                 error: payload
             };
         default: 

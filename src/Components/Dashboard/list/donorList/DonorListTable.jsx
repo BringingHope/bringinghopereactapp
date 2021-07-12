@@ -1,41 +1,34 @@
-import React, { useMemo, useState, useEffect } from "react";
-import {
-  useTable,
-  useFilters,
-  useGlobalFilter,
-  usePagination,
-  useSortBy,
-} from "react-table";
-import { GROUPED_COLUMNS } from "./Columns";
-import "../tableComponents/table.css";
-import { GlobalFilter } from "../tableComponents/GlobalFilter";
-import { ColumnFilter } from "../tableComponents/ColumnFilter";
-import { getDonorsByOrganisationId } from "../../../../redux";
-import { connect } from "react-redux";
-import { Redirect } from "react-router-dom";
+import React, { useMemo, useEffect } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { useTable, useFilters, useGlobalFilter, usePagination, useSortBy } from 'react-table'
+import { GROUPED_COLUMNS } from './Columns'
+import '../tableComponents/table.css'
+import { GlobalFilter } from '../tableComponents/GlobalFilter'
+import { ColumnFilter } from '../tableComponents/ColumnFilter'
+import { getDonorsByOrganisationId } from "../../../../redux"
+import { useParams } from "react-router-dom";
 import { Container } from "@material-ui/core";
 
-export const DonorListTable = (props) => {
-  const { isLoggedIn, List } = props;
-  // if (!isLoggedIn) {
-  //   return <Redirect to="/login" />;
-  // }
+export const DonorListTable = () => {
 
-  const { match } = props;
-  let { organisationId } = match.params;
+  const { id } = useParams();
+  const donors = useSelector(state => state.donorList.donors)
+
+    const {match}= props;
+    let{organisationId}= match.params;
 
   useEffect(() => {
-    props.dispatch(getDonorsByOrganisationId(organisationId));
-  }, [organisationId]);
+    dispatchcall(getDonorsByOrganisationId(id));
+  }, [id])
 
-  const columns = useMemo(() => GROUPED_COLUMNS, []);
-  const data = useMemo(() => List, [List]);
+  const columns = useMemo(() => GROUPED_COLUMNS, [])
+  const data = useMemo(() => donors, [donors])
   const defaultColumn = React.useMemo(
     () => ({
-      Filter: ColumnFilter,
+      Filter: ColumnFilter
     }),
     []
-  );
+  )
   const {
     getTableProps,
     getTableBodyProps,
@@ -51,20 +44,16 @@ export const DonorListTable = (props) => {
     pageCount,
     setPageSize,
     setGlobalFilter,
-    prepareRow,
+    prepareRow
   } = useTable(
     {
       columns,
       data,
       defaultColumn,
-      initialState: { pageIndex: 0 },
+      initialState: { pageIndex: 0 }
     },
-
-    useFilters,
-    useGlobalFilter,
-    useSortBy,
-    usePagination
-  );
+    useFilters, useGlobalFilter, useSortBy, usePagination,
+  )
 
   const { pageIndex, pageSize, globalFilter } = state;
 
@@ -82,8 +71,8 @@ export const DonorListTable = (props) => {
                     <span>
                       {column.isSorted
                         ? column.isSortedDesc
-                          ? " 🔽"
-                          : " 🔼"
+                          ? "🔽"
+                          : "🔼"
                         : ""}
                     </span>
                     <div>
@@ -160,14 +149,5 @@ export const DonorListTable = (props) => {
     </>
   );
 };
-const mapStateToProps = (state) => {
-  const { isLoggedIn } = state.auth;
-  const { message } = state.message;
 
-  return {
-    List: state.donorList,
-    isLoggedIn,
-    message,
-  };
-};
-export default connect(mapStateToProps)(DonorListTable);
+export default DonorListTable

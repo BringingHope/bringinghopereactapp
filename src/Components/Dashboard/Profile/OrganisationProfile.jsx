@@ -5,36 +5,35 @@ import "./Profile.css";
 import { Col, Card, CardText, CardBody, Container, Row } from "reactstrap";
 import ImageUpload from "./ImageUpload";
 import FormikControl from "../../../formUiComponents/FormikControl";
-import OrganisationProfileService from "../../../services/OrganisationDashboardService";
 import MainOrgPic from "./MainOrgPic";
 import OrgLogo from "./OrgLogo";
 import { Redirect } from 'react-router-dom';
 import { connect } from "react-redux";
-import { getOrganisationProfileDetailsById } from "../../../redux";
+import { getOrganisationProfileDetailsById, updateOrganisationProfileDetailsById } from "../../../redux";
 
 
 class OrganisationProfile extends Component {
- constructor(props) {
-     super(props)
+  constructor(props) {
+    super(props)
 
-     this.state = {
-       organisationId: this.props.match.params.id,
-       orgName: this.props.match.params.organisationName,
-     };
-   }
+    this.state = {
+      id: this.props.match.params.id,
+    };
+  }
   componentDidMount() {
 
-    this.props.dispatch(getOrganisationProfileDetailsById(this.state.organisationId));
+    this.props.dispatch(getOrganisationProfileDetailsById(this.state.id));
   }
 
   onSubmit = (values, submitProps) => {
     let OrgProfileDetails = {
+      organisationId: this.state.id,
       orgName: values.orgName,
-      AboutOrg: values.AboutOrg,
+      aboutOrg: values.aboutOrg,
       education: values.education,
       health: values.health,
       covid: values.covid,
-      States: values.States,
+      states: values.states,
       project: values.project,
       village: values.village,
       update1: values.update1,
@@ -57,57 +56,99 @@ class OrganisationProfile extends Component {
       country: values.country,
     };
 
-    OrganisationProfileService.updateOrganisationProfileDetailsById(
-      OrgProfileDetails, this.state.organisationId).then((res) => {
-        submitProps.setSubmitting(false);
-      console.log("Sent Successfully");
-    })
-    .catch( error => {
-      submitProps.setSubmitting(false);
-    })
+    this.props
+      .dispatch(
+        
+        updateOrganisationProfileDetailsById(this.state.id, OrgProfileDetails)
+      )
+      .then(() => {
+        console.log("sent successfully");
+        this.setState({
+          successful: true,  
+        });
+        // window.location.reload();
+      })
+      .catch(() => {
+        this.setState({
+          successful: false,
+        });
+      });
+      
+    submitProps.setSubmitting(false)
   };
 
   render() {
-    
+
     const { isLoggedIn, profiledata } = this.props;
     if (!isLoggedIn) {
       return <Redirect to="/login" />;
     }
 
-    const INITIAL_VALUES = profiledata;
-    console.log(profiledata);
+    const INITIAL_VALUES = {
+      organisationId: profiledata.usersProfiledetails.organisationId!==null ? profiledata.usersProfiledetails.organisationId: "",
+      orgName: profiledata.usersProfiledetails.orgName!==null ? profiledata.usersProfiledetails.orgName: "",
+      aboutOrg: profiledata.usersProfiledetails.aboutOrg!==null ? profiledata.usersProfiledetails.aboutOrg: "",
+      education: profiledata.usersProfiledetails.education!==null ? profiledata.usersProfiledetails.education: "",
+      health: profiledata.usersProfiledetails.health!==null ? profiledata.usersProfiledetails.health: "",
+      covid: profiledata.usersProfiledetails.covid!==null ? profiledata.usersProfiledetails.covid: "",
+      states: profiledata.usersProfiledetails.states!==null ? profiledata.usersProfiledetails.states: "",
+      project: profiledata.usersProfiledetails.project!==null ? profiledata.usersProfiledetails.project: "",
+      village: profiledata.usersProfiledetails.village!==null ? profiledata.usersProfiledetails.village: "",
+      update1: profiledata.usersProfiledetails.update1!==null ? profiledata.usersProfiledetails.update1: "",
+      update2: profiledata.usersProfiledetails.update2!==null ? profiledata.usersProfiledetails.update2: "",
+      update3: profiledata.usersProfiledetails.update3!==null ? profiledata.usersProfiledetails.update3: "",
+      acreditation: profiledata.usersProfiledetails.acreditation!==null ? profiledata.usersProfiledetails.acreditation: "",
+      awards: profiledata.usersProfiledetails.awards!==null ? profiledata.usersProfiledetails.awards: "",
+      suppSpeech: profiledata.usersProfiledetails.suppSpeech!==null ? profiledata.usersProfiledetails.suppSpeech: "",
+      volunteer1: profiledata.usersProfiledetails.volunteer1!==null ? profiledata.usersProfiledetails.volunteer1: "",
+      volunteer2: profiledata.usersProfiledetails.volunteer2!==null ? profiledata.usersProfiledetails.volunteer2: "",
+      volunteer3: profiledata.usersProfiledetails.volunteer3!==null ? profiledata.usersProfiledetails.volunteer3: "",
+      phone: profiledata.usersProfiledetails.phone!==null ? profiledata.usersProfiledetails.phone: "",
+      email: profiledata.usersProfiledetails.email!==null ? profiledata.usersProfiledetails.email: "",
+      addressLine1: profiledata.usersProfiledetails.addressLine1!==null ? profiledata.usersProfiledetails.addressLine1: "",
+      addressLine2: profiledata.usersProfiledetails.addressLine2!==null ? profiledata.usersProfiledetails.addressLine2: ' ',
+      city: profiledata.usersProfiledetails.city!==null ? profiledata.usersProfiledetails.city: "",
+      state: profiledata.usersProfiledetails.state!==null ? profiledata.usersProfiledetails.state: "",
+      country: profiledata.usersProfiledetails.country!==null ? profiledata.usersProfiledetails.country: "",
+    }
+
+  
+    console.log(profiledata.usersProfiledetails);
 
     const FORM_VALIDATION = Yup.object().shape({
       orgName: Yup.string().required("Required"),
-      AboutOrg: Yup.string(),
-      education: Yup.string(),
-      health: Yup.string(),
-      covid: Yup.string(),
-      States: Yup.string(),
-      project: Yup.string(),
-      village: Yup.string(),
-      update1: Yup.string(),
-      update2: Yup.string(),
-      update3: Yup.string(),
-      acreditation: Yup.string(),
-      awards: Yup.string(),
-      suppSpeech: Yup.string(),
-      volunteer1: Yup.string(),
-      volunteer2: Yup.string(),
-      volunteer3: Yup.string(),
-
+      // aboutOrg: Yup.string(),
+      // education: Yup.string(),
+      // health: Yup.string(),
+      // covid: Yup.string(),
+      // states: Yup.string(),
+      // project: Yup.string(),
+      // village: Yup.string(),
+      // update1: Yup.string(),
+      // update2: Yup.string(),
+      // update3: Yup.string(),
+      // acreditation: Yup.string(),
+      // awards: Yup.string(),
+      // suppSpeech: Yup.string(),
+      // volunteer1: Yup.string(),
+      // volunteer2: Yup.string(),
+      // volunteer3: Yup.string(),
       phone: Yup.number()
         .integer()
         .typeError("Please enter a valid phone number")
         .required("Required"),
       email: Yup.string().email("Invalid email.").required("Required"),
       addressLine1: Yup.string().required("Required"),
-      addressLine2: Yup.string(),
-      city: Yup.string(),
-      state: Yup.string(),
-      country: Yup.string(),
+      // addressLine2: Yup.string(),
+      // city: Yup.string(),
+      // state: Yup.string(),
+      // country: Yup.string(),
     });
-    return (
+    return profiledata.loading ? (
+      <h2>Loading</h2>
+    ) : profiledata.error ? (
+      <h2>{profiledata.error}</h2>
+    ) : (
       <>
         <Formik
           initialValues={INITIAL_VALUES}
@@ -149,7 +190,7 @@ class OrganisationProfile extends Component {
                         rows="15"
                         control="textarea"
                         label=""
-                        name="AboutOrg"
+                        name="aboutOrg"
                         type="work"
                       />
                     </CardBody>
@@ -203,7 +244,7 @@ class OrganisationProfile extends Component {
                             <FormikControl
                               control="input"
                               label="States"
-                              name="States"
+                              name="states"
                               type="reach"
                             />
                           </CardBody>
@@ -433,6 +474,13 @@ class OrganisationProfile extends Component {
                   >
                     Save
                   </button>
+                  {profiledata.message && (
+                    <div className="form-group">
+                      <div className={this.state.successful ? "alert alert-success" : "alert alert-danger"} role="alert">
+                        {profiledata.message}
+                      </div>
+                    </div>
+                  )}
                 </Container>
               </Form>
             </div>
@@ -445,7 +493,7 @@ class OrganisationProfile extends Component {
 function mapStateToProps(state) {
   const { isLoggedIn } = state.auth;
   return {
-    profiledata : state.organisationdetails,
+    profiledata: state.orgProfileDetails,
     isLoggedIn,
   };
 }
