@@ -13,10 +13,8 @@ export const DonorListTable = () => {
 
   const { id } = useParams();
   const donors = useSelector(state => state.donorList.donors)
-
-    const {match}= props;
-    let{organisationId}= match.params;
-
+  const dispatchcall = useDispatch()
+  
   useEffect(() => {
     dispatchcall(getDonorsByOrganisationId(id));
   }, [id])

@@ -140,7 +140,7 @@ export default class Home extends Component {
         <Container className="about">
           <Container className="container">
             <Row className="row align-items-center my-5">
-              <div className="col-lg-5">
+              <div className="col-lg-7">
                 <p>
                   Lorem Ipsum is simply dummy text of the printing and
                   typesetting industry. Lorem Ipsum has been the industry's
@@ -152,7 +152,7 @@ export default class Home extends Component {
                   <Button className="button">Join as NGO</Button>
                 </div>
               </div>
-              <div className="col-lg-7">
+              <div className="col-lg-5">
                 <CardImg
                   className="img-fluid rounded mb-4 mb-lg-0"
                   src="./img/children-2704878_1920.jpg"

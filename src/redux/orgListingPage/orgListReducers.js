@@ -6,7 +6,7 @@ import {
 
 const initialState = {
     loading: false,
-    organisationsList: [],
+    organisations: [],
     error: ''
 };
 
@@ -23,13 +23,13 @@ export default function list (state = initialState, action) {
         case GET_ORGANISATION_LIST_SUCCESS:
             return {
                 loading: false,
-                organisationsList: payload,
+                organisations: payload,
                 error: ''
             };
         case GET_ORGANISATION_LIST_FAILURE:
             return {
                 loading: false,
-                organisationsList: [],
+                organisations: [],
                 error: payload
             };
         default: 

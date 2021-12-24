@@ -113,7 +113,6 @@ class OrganisationProfile extends Component {
     }
 
   
-    console.log(profiledata.usersProfiledetails);
 
     const FORM_VALIDATION = Yup.object().shape({
       orgName: Yup.string().required("Required"),

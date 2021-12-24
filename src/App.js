@@ -19,6 +19,7 @@ import ResetPasswordForm from "./Components/forgotPassword/ResetPasswordForm";
 import OrganisationEvents from "./Components/Dashboard/Events/OrganisationEvents";
 
 import ListSearch from "./Components/List/ListSearch";
+import OrgLists from "./Components/OrgListingPage/OrgLists";
 
 function App() {
 
@@ -51,6 +52,7 @@ function App() {
             <Route exact path="/blog/bloghome" component={() => <Blog />} />
             <Route exact path="/post/:postId" component={Post1} />
             <Route exact path="/OtpVerification" component={() => <PhoneOtpVerification />} />
+            <Route exact path="/orglist" render={(props) => <OrgLists {...props} />} />
             <Footer />
           </div>
         </Switch>
